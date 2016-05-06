@@ -1,0 +1,151 @@
+\documentclass[12pt, a4paper]{article}
+%\documentclass[12pt,openright,oneside,a4paper,english,brazil]{abntex2}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!green},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\author{Yuri A. Martins}
+\title{Fundamentos Matemáticos da Computação II}
+
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+			{\large Universidade Federal do Rio Grande do Norte}\\[0.2cm]
+			{\large Instituto Metr\'opole Digital}\\[0.2cm]
+			{\large Bacharelado em Tecnologia da Informa\c{c}\~ao}\\[0.2cm]
+			{\large Fundamentos Matem\'aticos da Computa\c{c}\~ao II}\\[5.1cm]
+			{\bf \huge Estudo dirigido do conte\'udo da Unidade 2}\\[5.1cm]
+		\end{center}
+		{\large Aluno(a): Yuri Alessandro Martins}\\[0.7cm]
+		\begin{center}
+			{\large Natal/RN}\\[0.2cm]
+			{\large 2016}
+		\end{center}
+	\end{titlepage} 
+
+	\tableofcontents
+	\clearpage
+
+	\section{Teoria dos Conjuntos}
+		\subsection{Os Axiomas de Zermelo-Frankel}
+			
+			\subsubsection{Extensionalidade}
+				Para quaisquer conjuntos A, B:\\
+				$A = B ~ \Leftrightarrow ~ (\forall x ) (x \in A ~ \Leftrightarrow ~ x \in B) $
+			
+			\subsubsection{Emptyset}
+				Garante que existe um conjunto vazio ($\emptyset$). \\
+				$ \exists x \forall y ~ y \in\!\!\!\!\!/ ~~ x $
+			
+			\subsubsection{Pairset}
+				Para todo  e b, existe o conjunto \{a,b\}.\\
+				$ \forall a \forall ~ \exists w \forall x ~ (x \epsilon w ~ \Leftrightarrow ~ x = a ~\vee~ x = b ) $
+
+			\subsubsection{Separation}
+			\label{sec:separation}
+				Para cada condi\c{c}\~ao P(x),\\
+				$ \forall a \exists w \forall x (x \epsilon w ~ \Leftrightarrow ~ x \epsilon a ~\wedge~ x \epsilon b )$
+				\\
+				
+				Um problema de usar somente esses \'ultimos tr\^es axiomas \'e que s\'o somos capazes de formar
+				conjuntos com cardinalidade $\leq$ 2.
+					\begin{itemize}
+					\item ZF4 (Separation) \'e um  \underline{axiom-scheme}. Isto \'e, possui infinitos axiomas dentro dele, j\'a que
+					para cada P(x) estamos formando um novo axioma.
+					\end{itemize} 	
+			
+			\begin{description}
+			\item[-] Usando os axiomas anteriores, \'e poss\'ivel representarmos algumas coisas como conjuntos:
+				\begin{itemize}
+				\item (x, y) = \{ \{x\}, \{x, y\}\}	\label{teste}
+				\item A $\setminus$ B = \{ x $\in$ A ~$\mid$~ x $\in\!\!\!\!\!/$ B \}
+				\item $ A \cap B = \{ x \in A \mid x \in B \}$ 
+				\end{itemize}
+			\end{description}
+			
+			\subsubsection{Powerset $\wp$}
+				Para cada conjunto a, existe um conjunto b, onde os elementos de b s\~ao subconjuntos de a.
+				$\forall a \exists p \forall w ( x \in p ~ \Leftrightarrow ~ \forall x (x \in a \Rightarrow x \in b))$
+
+				Esse \'e o conjunto $\wp$(a).
+				
+				Algumas propriedades interesantes:\\
+				$\wp$($\emptyset$) = $\{ \emptyset \}$ \\
+				$\wp$($\{ \emptyset \} $) = $\{ \emptyset \ , \{ \emptyset \}\}$
+
+			\subsubsection{Unionset}
+				Corresponde ao conjunto $\cup a$.\\
+				$\forall a \exists u \forall x ( x \in u ~\Leftrightarrow~ (\exists e \in a) [x \in e] )$
+
+				Ex: $\cup \emptyset = \cup \{ \emptyset \} = \emptyset$
+
+				\begin{itemize}
+				\item $a \cup b = \cup \{a,b\}$
+				\item $ a \times b = \{ w \in S \mid \exists x \exists y (w = (x,y) \land x \in a \land x \in b)\}$ \\
+						Onde $S = \wp(\wp(a \cup b))$
+				\item sigletonset = $\{ x ~ \in ~ \wp a ~\mid~ (\exists t ~\in~ a)[x = \{t\}]\}$
+				\item $\cap a = \{x ~\in~ \cup a ~\mid~ (\forall e ~\in~ a)[x ~\in~ e]\}$
+				\end{itemize}
+
+			\subsubsection{Infinity Axiom}
+				$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow \{x\} ~\in~ I ))$ or\\
+				$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow x ~\cup~ \{x\} ~\in~ I ))$\\
+
+				Esse axioma \'e garantido pois\\
+				$\{x\} \ne x $\\
+				$ x \cup \{x\} \ne x $
+
+			\subsection{Rela\c{c}\~oes, Fun\c{c}\~oes e Fun\c{c}\~oes parciais de Zermelo-Frankel}
+			\subsubsection{Definindo um par ordenado}
+				A opera\c{c}\~ao de par do Kuratowski:\\
+				$ (x, y) = \{ \{x\}, \{x, y\}\} $, como vimos anteriormente na se\c{c}\~ao~\ref{sec:separation}
+
+			\subsubsection{Rela\c{c}\~oes}
+				
+				Def: Sejam A,B conjuntos, R \'e uma rela\c{c}\~ao \underline{entre} A e B se R $\subseteq$ A $\times$ B.
+
+				Dessa forma, 
+				\begin{itemize}
+				\item f(a) = b $\to$ (a,b) $\in$ f
+				\end{itemize}
+
+				\begin{itemize}
+				\item[-] Uni\~ao Disjunta: $A \uplus B = (\{0,a\} \times A) \cup (\{1,b\} \times B)$				
+				\end{itemize}
+
+
+				Sendo R uma rela\c{c}\~ao sobre o conjunto $\mathbb{N}$ (R $\subseteq$ A $\times$ A),
+				\begin{itemize}
+				\item x R x : Reflexiva - `` $ =, ~\leq, ~\geq, ~\subseteq $ ''
+				\item x R y $\Rightarrow $ y R x  : Sim\'etrica - `` $ = $  ''
+				\item x R y $\land$ y R z $\Rightarrow$ x R z : Transitiva -  `` $ =, ~\leq, ~\geq, ~<, ~>, ~\subseteq $ ''
+				\end{itemize}
+
+			\subsubsection{Fun\c{c}\~oes e Fun\c{c}\~oes parciais}
+
+		\subsection{Cardinais}
+		\subsection{Os Axiomas de Peano e os Naturais na ZFC}
+		\subsection{Teorema da Recurs\~ao}
+		\subsection{String Recursion}
+
+	\section{$\lambda$-Calculus}
+		\subsection{O conjunto de $\lambda$-termos}
+		\subsection{$\alpha,~ \beta~ e~ \eta~$ conversions}
+		\subsection{Booleanos naturais no $\Lambda$}
+		\subsection{Combinators I, K, B, S}
+
+
+\end{document}
