@@ -2,24 +2,28 @@
 %\documentclass[12pt,openright,oneside,a4paper,english,brazil]{abntex2}
 
 \usepackage[brazil]{babel}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{amssymb}
+\usepackage{amsmath,amssymb,latexsym}
+%\usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{amsmath}
+%\usepackage{amsmath}
 \usepackage{amstext}
 \usepackage{multicol}
 \usepackage{qtree}
-
+\usepackage{mathtools}
+\usepackage{cite}
 
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
 \hypersetup{
-    colorlinks,
-    linkcolor={blue!50!green},
-    citecolor={blue!50!black},
-    urlcolor={blue!80!black}
+colorlinks,
+linkcolor={blue!50!green},
+citecolor={blue!50!black},
+urlcolor={blue!80!black}
 }
+
+\newtheorem*{theorem}{Theorem}
 
 \author{Yuri A. Martins}
 \title{Fundamentos Matemáticos da Computação II}
@@ -27,418 +31,488 @@
 
 \begin{document}
 
-	\begin{titlepage}
-		\begin{center}
-			{\large Universidade Federal do Rio Grande do Norte}\\[0.2cm]
-			{\large Instituto Metr\'opole Digital}\\[0.2cm]
-			{\large Bacharelado em Tecnologia da Informa\c{c}\~ao}\\[0.2cm]
-			{\large Fundamentos Matem\'aticos da Computa\c{c}\~ao II}\\[5.1cm]
-			{\bf \huge Estudo dirigido do conte\'udo da Unidade 2}\\[5.1cm]
-		\end{center}
-		{\large Aluno(a): Yuri Alessandro Martins}\\[0.7cm]
-		\begin{center}
-			{\large Natal/RN}\\[0.2cm]
-			{\large \today}
-		\end{center}
-	\end{titlepage} 
+\begin{titlepage}
+\begin{center}
+{\large Universidade Federal do Rio Grande do Norte}\\[0.2cm]
+{\large Instituto Metrópole Digital}\\[0.2cm]
+{\large Bacharelado em Tecnologia da Informação}\\[0.2cm]
+{\large Fundamentos Matemáticos da Computação II}\\[5.1cm]
+{\bf \huge Estudo dirigido do conteúdo da Unidade 2}\\[5.1cm]
+\end{center}
+{\large Autor: Yuri Alessandro Martins}\\[0.7cm]
+\begin{center}
+{\large Natal/RN}\\[0.2cm]
+{\large \today}
+\end{center}
+\end{titlepage} 
 
-	\tableofcontents
-	\clearpage
+\tableofcontents
+\clearpage
 
-	\section{Teoria dos Conjuntos}
-		\subsection{Os Axiomas de Zermelo-Frankel}
-			
-			\subsubsection{Extensionalidade}
-			\label{sec:extensionalidade}
-				Para quaisquer conjuntos A, B:\\
-				\begin{center}
-				$A = B ~ \Leftrightarrow ~ (\forall x ) (x \in A ~ \Leftrightarrow ~ x \in B) $
-				\end{center}
-			\subsubsection{Emptyset}
-			\label{sec:emptyset}
-				Garante que existe um conjunto vazio ($\emptyset$). \\
-				\begin{center}
-				$ \exists x \forall y ~ y \in\!\!\!\!\!/ ~~ x $
-				\end{center}
-			\subsubsection{Pairset}
-				Para todo a e b, existe o conjunto \{a,b\}.\\
-				\begin{center}
-				$ \forall a \forall ~ \exists w \forall x ~ (x \epsilon w ~ \Leftrightarrow ~ x = a ~\vee~ x = b ) $
-				\end{center}
-			\subsubsection{Separation}
-			\label{sec:separation}
-				Para cada condi\c{c}\~ao P(x),\\
-				\begin{center}
-				$ \forall a \exists w \forall x (x \epsilon w ~ \Leftrightarrow ~ x \epsilon a ~\wedge~ x \epsilon b )$
-				\end{center}
-					
-				Um problema de usar somente esses \'ultimos tr\^es axiomas \'e que s\'o somos capazes de formar
-				conjuntos com cardinalidade $\leq$ 2.
-					\begin{itemize}
-					\item ZF4 (~\ref{sec:separation}) \'e um  \underline{axiom-scheme}. Isto \'e, possui infinitos axiomas dentro dele, j\'a que
-					para cada P(x) estamos formando um novo axioma.
-					\end{itemize} 	
-			
-			\begin{description}
-			\item[-] Usando os axiomas anteriores, \'e poss\'ivel representarmos algumas coisas como conjuntos:
-				\begin{itemize}
-				\item (x, y) $\triangleq$ \{ \{x\}, \{x, y\}\}	\label{teste}
-				\item A $\setminus$ B $\triangleq$ \{ x $\in$ A ~$\mid$~ x $\in\!\!\!\!\!/$ B \}
-				\item $ A \cap B \triangleq \{ x \in A \mid x \in B \} $ 
-				\end{itemize}
-			\end{description}
-			
-			\subsubsection{Powerset $\wp$}
-				Para cada conjunto a, existe um conjunto b, onde os elementos de b s\~ao subconjuntos de a.
-				\begin{center}
-				$\forall a \exists p \forall w ( x \in p ~ \Leftrightarrow ~ \forall x (x \in a \Rightarrow x \in b))$
-				\end{center}
+\section{Teoria dos Conjuntos}
+\subsection{Os Axiomas de Zermelo-Frankel}
 
-				Esse \'e o conjunto $\wp$(a).
+\subsubsection{Extensionalidade}
+\label{sec:extensionalidade}
+Para quaisquer conjuntos $A, B$:\\
+\begin{center}
+$A = B ~ \iff ~ (\forall x ) (x \in A ~ \iff ~ x \in B) $
+\end{center}
+\subsubsection{Emptyset}
+\label{sec:emptyset}
+Garante que existe um conjunto vazio ($\emptyset$). \\
+\begin{center}
+$ \exists x \forall y ~ y \in\!\!\!\!\!/ ~~ x $
+\end{center}
+\subsubsection{Pairset}
+Para todo $a$ e $b$, existe o conjunto $\{a,b\}$.\\
+\begin{center}
+$ \forall a \forall ~ \exists w \forall x (x \epsilon w ~ \iff ~ x = a ~\vee~ x = b ) $
+\end{center}
+\subsubsection{Separation}
+\label{sec:separation}
+Para cada condição $P(x)$,\\
+\begin{center}
+$ \forall a \exists w \forall x (x \epsilon w ~ \iff ~ x \epsilon a ~\wedge~ x \epsilon b )$
+\end{center}
 
-				Aqui $x \in a$ \'e uma abrevia\c{c}\~ao de $(\forall t)[t \in x \Rightarrow t \in a]$. O Axioma da Extensionalidade~(\ref{sec:extensionalidade}) implica que para cada a, apenas um conjunto b pode satisfazer a definin\c{c}\~ao do Powerset; N\'os podemos chamar \textbf{Conjunto Pot\^encia} de a e denot\'a-lo como:\\
-				$\wp(a) \triangleq \{x \mid Set(x) \& x \in a \}$\\
-				
-				Algumas propriedades interesantes:\\
-				$\wp$($\emptyset$) = $\{ \emptyset \}$ \\
-				$\wp$($\{ \emptyset \} $) = $\{ \emptyset \ , \{ \emptyset \}\}$\\
+Um problema de usar somente esses últimos três axiomas é que só somos capazes de formar
+conjuntos com cardinalidade $\leq$ 2.
+\begin{itemize}
+\item ZF4 (\ref{sec:separation}) é um  \underline{axiom-scheme}. Isto é, possui infinitos axiomas dentro dele, já que
+para cada P(x) estamos formando um novo axioma.
+\end{itemize} 	
 
-				Exerc\'icio: Para cada conjunto A, existe um conjunto B cujo membros s\~ao exatamente singletons dos membros de A:
-				\begin{center}
-				$ x \in B \Leftrightarrow (\exists t \in A) [x = \{t\}]$
-				\end{center}
-			\subsubsection{Unionset}
-			\label{sec:unionset}
-				Corresponde ao conjunto $\cup a$.\\
-				\begin{center}
-				$\forall a \exists u \forall x ( x \in u ~\Leftrightarrow~ (\exists e \in a) [x \in e] )$
-				\end{center}
+\begin{description}
+\item[-] Usando os axiomas anteriores, é possível representarmos algumas coisas como conjuntos:
+\begin{itemize}
+\item (x, y) $\triangleq$ \{ \{x\}, \{x, y\}\}	\label{teste}
+\item A $\setminus$ B $\triangleq$ \{ x $\in$ A ~$\mid$~ x $\in\!\!\!\!\!/$ B \}
+\item $ A \cap B \triangleq \{ x \in A \mid x \in B \} $ 
+\end{itemize}
+\end{description}
 
-				Ex: $\cup \emptyset = \cup \{ \emptyset \} = \emptyset$
+\subsubsection{Powerset $\wp$}
+Para cada conjunto $a$, existe um conjunto $b$, onde os elementos de $b$ são subconjuntos de $a$.
+\begin{center}
+$\forall a \exists p \forall w ( x \in p ~ \iff ~ \forall x (x \in a \Rightarrow x \in b))$
+\end{center}
 
-				\begin{itemize}
-				\item $a \cup b = \cup \{a,b\}$
-				
-				Usando os axiomas ZF2 (\ref{sec:emptyset}) e ZF5 (\ref{sec:unionset})\\
-				\begin{center}
-				$t \in A \cup B \Leftrightarrow (\exists X \in \{A,B\})[t \in X]$\\
-				$t \in A \cup B \Leftrightarrow t \in A \vee t \in B$
-				\end{center}
-				\item $ a \times b \triangleq \{ w \in S \mid \exists x \exists y (w = (x,y) \land x \in a \land x \in b)\}$ \\
-						Onde $S = \wp(\wp(a \cup b))$
-				\item sigletonset $ \triangleq \{ x ~ \in ~ \wp a ~\mid~ (\exists t ~\in~ a)[x = \{t\}]\}$
-				\item $\cap a \triangleq \{x ~\in~ \cup a ~\mid~ (\forall e ~\in~ a)[x ~\in~ e]\}$
-				\end{itemize}
+Esse é o conjunto $\wp$(a).
 
-			\subsubsection{Infinity Axiom}
-			\label{sec:infinity}
-				$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow \{x\} ~\in~ I ))$ ou\\
-				$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow x ~\cup~ \{x\} ~\in~ I ))$\\
+Aqui $x \in a$ é uma abreviação de $(\forall t)[t \in x \Rightarrow t \in a]$. O Axioma da Extensionalidade (\ref{sec:extensionalidade}) implica que para cada a, apenas um conjunto b pode satisfazer a defininção do Powerset; Nós podemos chamar \textbf{Conjunto Potência} de a e denotá-lo como:\\
+$\wp(a) \triangleq \{x \mid Set(x) \& x \in a \}$\\
 
-				Esse axioma \'e garantido pois\\
-				$\{x\} \ne x $\\
-				$ x \cup \{x\} \ne x $
+Algumas propriedades interesantes:\\
+$\wp$($\emptyset$) = $\{ \emptyset \}$ \\
+$\wp$($\{ \emptyset \} $) = $\{ \emptyset \ , \{ \emptyset \}\}$\\
 
-				Com ele, somos capazes de montar o seguinte conjunto infinito:\\
-				I = $\{ \emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \cdots \}$ ou\\
+Exercício: Para cada conjunto $A$, existe um conjunto $B$ cujo membros são exatamente singletons dos membros de $A$:
+\begin{center}
+$ x \in B \iff (\exists t \in A) [x = \{t\}]$
+\end{center}
+\subsubsection{Unionset}
+\label{sec:unionset}
+Corresponde ao conjunto $\cup a$.\\
+\begin{center}
+$\forall a \exists u \forall x ( x \in u ~\iff~ (\exists e \in a) [x \in e] )$
+\end{center}
+
+Ex: $\cup \emptyset = \cup \{ \emptyset \} = \emptyset$
+
+\begin{itemize}
+\item $a \cup b = \cup \{a,b\}$
+
+Usando os axiomas ZF2 (\ref{sec:emptyset}) e ZF5 (\ref{sec:unionset})\\
+\begin{center}
+$t \in A \cup B \iff (\exists X \in \{A,B\})[t \in X]$\\
+$t \in A \cup B \iff t \in A \vee t \in B$
+\end{center}
+\item $ a \times b \triangleq \{ w \in S \mid \exists x \exists y (w = (x,y) \land x \in a \land x \in b)\}$ \\
+Onde $S = \wp(\wp(a \cup b))$
+\item sigletonset $ \triangleq \{ x ~ \in ~ \wp a ~\mid~ (\exists t ~\in~ a)[x = \{t\}]\}$
+\item $\cap a \triangleq \{x ~\in~ \cup a ~\mid~ (\forall e ~\in~ a)[x ~\in~ e]\}$
+\end{itemize}
+
+\subsubsection{Infinity Axiom}
+\label{sec:infinity}
+$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow \{x\} ~\in~ I ))$ ou\\
+$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow x ~\cup~ \{x\} ~\in~ I ))$\\
+
+Esse axioma é garantido pois\\
+\begin{align*}
+\{x\} &\ne x \\
+x \cup \{x\} &\ne x 
+\end{align*}
+
+Com ele, somos capazes de montar o seguinte conjunto infinito:\\
+I = $\{ \emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \cdots \}$
+
+\subsection{Relações, Funções e Funções parciais na ZFC}
+\subsubsection{Definindo um par ordenado}
+A operação de par do Kuratowski:\\
+$ (x, y) = \{ \{x\}, \{x, y\}\} $, como vimos anteriormente na seção~\ref{sec:separation}\\
+
+PROOF AND MORE DETAILS...
+
+\subsubsection{Relações}
+
+Def: Sejam $A,B$ conjuntos, $R$ é uma relação \underline{entre} $A$ e $B$ se $R \subseteq A \times B$.
+
+Dessa forma, 
+\begin{itemize}
+\item $f(a) = b \rightsquigarrow (a,b) \in f$
+\end{itemize}
+
+\begin{itemize}
+\item[-] União Disjunta: $A \uplus B = (\{0,a\} \times A) \cup (\{1,b\} \times B)$				
+\end{itemize}
+
+Sendo $R$ uma relação sobre o conjunto $\mathbb{N} (R \subseteq A \times A), R$ pode ser:
+
+\begin{align*}
+x R x &: Reflexiva \rightsquigarrow `` =, ~\leq, ~\geq, ~\subseteq ''\\
+x R y \Rightarrow  y R x  &: Simetrica \rightsquigarrow `` =  ''\\
+x R y \land y R z \Rightarrow x R z &: Transitiva \rightsquigarrow  `` =, ~\leq, ~\geq, ~<, ~>, ~\subseteq ''
+\end{align*}	
+
+Ainda existem outras propriedas como essas, como a \underline{Antireflexiva} ou \underline{Antisimétrica}.
+
+\subsubsection{Relações de Equivalência}
+Uma relação sobre um conjunto $A$ é chamada \textbf{relação de equivalência} se ela for \underline{reflexiva},
+\underline{simétrica} e \underline{transitiva}.
+
+O conjunto de todos os elementos que são relacionados a um elemento $a$ de $A$ é chamado de \underline{classe de equivalência} de $a$. Isso implica que:
+\begin{center}
+$\cup [a] = A$
+\end{center}
+
+\begin{itemize}
+\item $[a] \cap [b] = \emptyset quando [a] \neq[b]$\\
+\end{itemize}
+
+Uma partição de um conjunto $S$ é uma coleção de subconjuntos disjuntos não vazios de $S$. A união de todas as partições resulta, portanto, em $S$. Em outras palavras, os subconjuntos $A_i$ formam partições de $S$ se e somente se\\
+\begin{align*}
+A_i &\neq \emptyset\\
+A_i &\cap A_j = \emptyset, quando~i \neq j\\
+\cap A_i &= S
+\end{align*}
+
+Podemos definir classes de equivalência como:\\
+\begin{align*}
+[x/\backsim] &\triangleq \{a \in A \mid x \backsim a \}\\
+[A/\backsim] &\triangleq \{c \in \wp(A) \mid \exists x ~ C = [x/\backsim] \}
+\end{align*}
+
+Seja $x,y \in A$, e $\backsim$ uma relação de equivalência no $A$:
+\begin{align*}
+[x/\backsim] = [y/\backsim] &\iff x \backsim y\\
+[x/\backsim] = [y/\backsim] &\iff
+\begin{cases} 
+[x/\backsim] 	& \text{se } x \backsim y \\
+\emptyset 		& \text{se não}\\
+\end{cases}
+\\
+\cup\{[x/ \backsim] \mid x \in a \} &= A
+\end{align*}
+
+\subsubsection{Funções}
+
+\subsection{Currying}
+Dada uma função $f$ do tipo $f:(X \times X) \rightarrow Z$, então a técnica de \textbf{currying} a torna $(f): X \rightarrow (Y \rightarrow Z)$.
+Isto é, currying torna um paramêtro do tipo $X$ e retorna uma função do tipo $Y \rightarrow Z$.\\
 
 
-			\subsection{Rela\c{c}\~oes, Fun\c{c}\~oes e Fun\c{c}\~oes parciais na ZFC}
-			\subsubsection{Definindo um par ordenado}
-				A opera\c{c}\~ao de par do Kuratowski:\\
-				$ (x, y) = \{ \{x\}, \{x, y\}\} $, como vimos anteriormente na se\c{c}\~ao~\ref{sec:separation}
+\noindent Achar um $\phi ( (x,y) \rightarrow A \rightarrowtail\!\!\!\!\!\rightarrow (x \rightarrow (y \rightarrow A)))$\\
+$\phi(F) = G$, onde $G$ é definida pela,\\
+$G(x)(y) = g$, ode $g$ é definida pela,\\
+$g(y), f(x,y)$
 
-			\subsubsection{Rela\c{c}\~oes}
-				
-				Def: Sejam A,B conjuntos, R \'e uma rela\c{c}\~ao \underline{entre} A e B se R $\subseteq$ A $\times$ B.
+\subsection{Cardinais}
+Seja $A$ um conjunto. O que é $|A|$?
+\begin{itemize}
+\item[c1.] $A =_c |A|$
+\item[c2.] $A =_c B \iff |A| = |B|$
+\item[c3.] para todo conjunto de conjuntos $\epsilon$,\\
+$\{|x| \mid x \in \epsilon \}$ é conjunto.
+\end{itemize}
 
-				Dessa forma, 
-				\begin{itemize}
-				\item f(a) = b $\rightsquigarrow$ (a,b) $\in$ f
-				\end{itemize}
+Aqui estaremos definindo funções cardinais fracas (\textbf{weak}). Isso porquê seria necessário provar o c2, algo extremamanete complicado agora. Portanto, podemos o resumir como:\\
 
-				\begin{itemize}
-				\item[-] Uni\~ao Disjunta: $A \uplus B = (\{0,a\} \times A) \cup (\{1,b\} \times B)$				
-				\end{itemize}
+\begin{itemize}
+\item[c2.] $A =_c B \iff |A| =_c |B|$
+\end{itemize}
 
-				Sendo R uma rela\c{c}\~ao sobre o conjunto $\mathbb{N}$ (R $\subseteq$ A $\times$ A), R pode ser:
-				\begin{itemize}
-				\item x R x : Reflexiva $\rightsquigarrow$ `` $ =, ~\leq, ~\geq, ~\subseteq $ ''
-				\item x R y $\Rightarrow $ y R x  : Sim\'etrica $\rightsquigarrow$ `` $ = $  ''
-				\item x R y $\land$ y R z $\Rightarrow$ x R z : Transitiva $\rightsquigarrow$  `` $ =, ~\leq, ~\geq, ~<, ~>, ~\subseteq $ ''
-				\end{itemize}
+Sejam $\kappa, \lambda, \mu$ números cardinais:
+\begin{itemize}
+\item $\kappa + \lambda \triangleq_c \kappa \uplus \lambda$
+\item $\kappa . \lambda \triangleq_c \kappa \times \lambda$
+\item $\kappa^\lambda \triangleq_c (\kappa \to \lambda)$
+\end{itemize}
 
-				Ainda existem outras propriedas como essas, como a \underline{Antireflexiva} ou \underline{Antisem\'etrica}.
+\subsection{Os Axiomas de Peano}
+\textbf{Structed set}: $(\mathbb{N}; 0; S)$, onde $0 \in \mathbb{N}$ e $S:\mathbb{N} \rightarrow \mathbb{N}$\\
 
-			\subsubsection{Rela\c{c}\~oes de Equival\^encia}
-			  	Uma rela\c{c}\~ao sobre um conjunto A \'e chamada \textbf{rela\c{c}\~ao de equival\^encia} se ela for \underline{reflexiva},
-			  	\underline{sim\'etrica} e \underline{transitiva}.
+\begin{align*}
+0 &\in \mathbb{N}\\
+S: \mathbb{N} &\rightarrow \mathbb{N}\\
+S: \mathbb{N} &\rightarrowtail \mathbb{N}\\
+(\forall x \in \mathbb{N})&[S_n \neq 0 ]\\
+(\forall x \subseteq \mathbb{N})&[ [0 \in X \land (\forall n \in \mathbb{N}) [n \in X \Rightarrow S_n \in X ]] \Rightarrow X = \mathbb{N}]
+\end{align*}
 
-			  	O conjunto de todos os elementos que s\~ao relacionados a um elemento \textbf{a} de \textbf{A} \'e chamado de \underline{classe de equival\^encia} de \textbf {a}. Isso implica que:
-			  	\begin{center}
-			  	$\cup [a] = A$
-			  	\end{center}
+O axioma de peano 5 é o que nos permite realizar indução matemática. Observe:
+\begin{align*}
+\forall x \subseteq \mathbb{N}~&corresponde~a~\textbf{base}.\\
+(\forall n \in \mathbb{N}) [n \in X \Rightarrow S_n \in X] ~&corresponde~ao~\textbf{passo indutivo}.\\
+n \in X ~&corresponde~a~\textbf{hipotése indutiva}.
+\end{align*}
 
-			  	\begin{itemize}
-			  	\item $[a] \cap [b] = \emptyset$ quando [a] $\neq$[b]\\
-			  	\end{itemize}
+\subsection{Teorema da Recursão}
+\label{sec:recursion}
+\begin{theorem}
+Sejam: $(\mathbb{N}, 0, S)$ um sistema de naturais conjunto E.\\
+$a \in E$\\
+$h:E \rightarrow E$\\
+Então existe $f: \mathbb{N} \rightarrow E$\\
+tal que: $f(0) = a e f(S_n) = h(f(n))$.
+\end{theorem}
 
-			  	Uma parti\c{c}\~ao de um conjunto S \'e uma cole\c{c}\~ao de subconjuntos disjuntos n\~ao vazios de S. A uni\~ao de todas as parti\c{c}\~oes resulta, portanto, em S. Em outras palavras, os subconjuntos $A_i$ formam parti\c{c}\~oes de S se e somente se\\
-			  	$A_i \neq \emptyset$\\
-			  	$A_i \cap A_j = \emptyset, quando~i \neq j$\\
-			  	$\cap A_i = S$
 
-				Podemos definir classes de equival\^encia como:\\
-				\begin{center}
-				$[x/\backsim] \triangleq \{a \in A \mid x \backsim a \}$\\
-				$[A/\backsim] \triangleq \{c \in \wp(A) \mid \exists x ~ C = [x/\backsim] \}$
-				\end{center}
+\subsection{Os Naturais na ZFC}
+Para estabelecermos os Naturais na ZFC, temos que garantir duas coisas:
+\begin{itemize}
+\item Existência de $\mathbb{N}$
+\item Singularidade de $\mathbb{N}$
+\end{itemize}
 
-				Seja x,y $\in$ A, e $\backsim$ uma rela\c{c}\~ao de equival\^encia no A:
-				\begin{itemize}
-				\item[-] $[x/\backsim] = [y/\backsim] \Leftrightarrow x \backsim y$
-				\item[-] $[x/\backsim] = [y/\backsim] \Leftrightarrow [x/\backsim], se x \backsim y; \emptyset$, se n\~ao.
-				\item[-] $\cup\{[x/ \backsim] \mid x \in a \} = A $
-				\end{itemize}
-		
-			\subsubsection{Fun\c{c}\~oes}
-		
-		\subsection{Currying}
-			Dada uma fun\c{c}\~ao f do tipo $f:(X \times X) \rightarrow Z$, ent\~ao a t\'ecnica de \textbf{currying} a torna $(f): X \rightarrow (Y \rightarrow Z)$.
-			Isto \'e, currying torna um param\^etro do tipo X e retorna uma fun\c{c}\~ao do tipo $Y \rightarrow Z$.
+Para tal, iremos precisar do Teorema da Recursão (\ref{sec:recursion}).
 
-			\begin{proof}
-			Achar um $\phi ( (x,y) \rightarrow A \rightarrowtail\!\!\!\!\!\rightarrow (x \rightarrow (y \rightarrow A)))$\\
-			$\phi(F) = G$, onde G \'e definida pela,\\
-			$G(x)(y) = g$, ode g \'e definida pela,\\
-			$g(y), f(x,y)$
-			\end{proof} 
-		
-		\subsection{Cardinais}
-			Seja A um conjunto. O que \'e |A|?
-			\begin{itemize}
-			\item[c1.] A $=_c$ |A|
-			\item[c2.] A $=_c$ B $\Leftrightarrow$ |A| = |B|
-			\item[c3.] Para todo conjunto de conjuntos $\epsilon$,
-						$\{|x| \mid x \in \epsilon \}$ \'e conjunto.
-			\end{itemize}
+\subsubsection{Existência de $\mathbb{N}$}
+Seja $J$ = todos os conjuntos $X$ tal que satisfaz o ZF7 (\ref{sec:infinity})\\
+$J = \{X \in \wp I \mid \emptyset \in X \land (\forall x \in X)[S \in X]\}$\\
+\begin{multicols}{2}
+\noindent Seja $\mathbb{N} \triangleq \cap J$\\ 
+Seja $0_1 = \emptyset$\\ 
+Seja $S_1 = \lambda x.\{x\}$ \footnote{Visiste \ref{sec:lambda} para $\lambda$-Calculus e entender melhor esse ponto}\\ 
 
-			Aqui estamos dando uma definini\c{c}\~ao fraca (\textbf{weak}) dos cardinais. N\~ao iremos provar essas tr\^es propriedas nesse momento, e vamos apenas t\^e-las como verdade.
+\noindent Seja $\mathbb{N} \triangleq \cap J$\\
+Seja $0_2 = \emptyset$\\
+Seja $S_2 = \lambda x.x \cup \{x\} $ \footnote{Veja nota 1} 
+\end{multicols}
 
-		\subsection{Os Axiomas de Peano}
-			Structed set: $(\mathbb{N}; 0; S)$, onde 0 $\in \mathbb{N}$ e S:$\mathbb{N} \rightarrow \mathbb{N}$\\
+Encaixando com os Axiomas de Peano:
+\begin{enumerate}
+\item $(\forall x \in J)[\emptyset \in X]$, então $\emptyset \in \cap J$ e $\emptyset \in \mathbb{N}$
+\item Também, pela própria definição de J
+\item $a \neq b \iff S_a \neq S_b$ ou $a \neq b \iff \{a\} \neq \{b\}$
+\item $\forall x \{x\} \neq \emptyset$
+\item Seja $X \subseteq \mathbb{N}$, tal que\\	
+0 $\in$ X\\
+$(\forall x \in X)[S_X \in X]$\\
+Seja $n \in \mathbb{N}$\\
+$\exists p : x = \{p\}$\\
+--> Mesmo que $\{p\} \in \cap J = \mathbb{N}$\\
+--> Mesmo que $n \in X$ e $x \geq \mathbb{N}$
+\end{enumerate}
 
-			\begin{enumerate}
-			\item 0 $\in \mathbb{N}$
-			\item S: $\mathbb{N} \rightarrow \mathbb{N}$
-			\item S: $\mathbb{N} \rightarrowtail \mathbb{N}$
-			\item $(\forall x \in \mathbb{N})[S_n \neq$ 0 ]
-			\item $(\forall x \subseteq \mathbb{N})[ [0 \in X \land (\forall n \in \mathbb{N}) [n \in X \Rightarrow S_n \in X ]] \Rightarrow X = \mathbb{N}]$
-			\end{enumerate}
+Basicamente, podemos descrever $\mathbb{N}$ de duas maneiras, agora:
+\begin{multicols}{2}
+\noindent 0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
+1 \hspace{4bp} $\{\emptyset\} = \{0\}$\\
+2 \hspace{4bp} $\{\{\emptyset\}\} = \{1\}$\\
+3 \hspace{4bp} $\{\{\{\emptyset\}\}\} = \{2\}\\$
+$\vdots$\\
+\hspace{5bp} S = $\lambda$x.$\{x\}$ \\
 
-			O axioma de peano 5 \'e o que nos permite realizar indu\c{c}\~ao matem\'atica. Observe:
-			\begin{itemize}
-			\item $\forall x \subseteq \mathbb{N}$ corresponde a \textbf{base}.
-			\item $\forall n \in \mathbb{N}) [n \in X \Rightarrow S_n \in X $ corresponde ao \textbf{passo indutivo}.
-			\item $n \in X$ corresponde a \textbf{hipot\'ese indutiva}.
-			\end{itemize}
-		
-		\subsection{Teorema da Recurs\~ao}
-		\label{sec:recursion}
-			Sejam: $(\mathbb{N}$, 0, S) um sistema de naturais conjunto E.\\
-			$a \in E$\\
-			h:$E \rightarrow E$\\
-			Ent\~ao existe f:$ \mathbb{N} \rightarrow E$\\
-			tal que: f(0) = a e f($S_n$) = h(f(n)).
+\noindent 0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
+1 \hspace{4bp} $\{\emptyset\} = \{0\}$\\
+2 \hspace{4bp} $\{\emptyset, \{\emptyset\}\} = \{0,1\}$\\
+3 \hspace{4bp} $\{\emptyset, \{\emptyset\}\, \{\{\emptyset\}\}\}$\\
+$\vdots$\\
+\hspace{5bp} S = $\lambda x.x \cup \{x\} $
+\end{multicols}
 
-		\subsection{Os Naturais na ZFC}
-			Para estabelecermos os Naturais na ZFC, temos que garantir duas coisas:
-			\begin{itemize}
-			\item Exist\^encia de $\mathbb{N}$
-			\item Singularidade de $\mathbb{N}$
-			\end{itemize}
+\subsubsection{Singularidade de $\mathbb{N}$}
+``$\mathbb{N}$ is unique up to isomorphism:''\\
+$\pi$ : ($\mathbb{N}_1$; $0_1$; $S_1$) $ \rightarrowtail\!\!\!\!\!\rightarrow $ ($\mathbb{N}_1$; $0_2$; $S_2$).
+\begin{itemize}
+\item[]\hspace{4bp}$\pi (0_1) = 0_2$
+\item[]\hspace{4bp}$\pi (S_1 n_1) = S_2 \pi (n_1)$
+\end{itemize}
 
-			Para tal, iremos precisar do Teorema da Recurs\~ao~(\ref{sec:recursion}).
+Se traçarmos um paralelo com o Teorema da Recursão (\ref{sec:recursion}), para tentarmos provar a singularidade de $\mathbb{N}$, podemos realizar as seguintes associações:
+\begin{itemize}
+\item $\mathbb{N}$ : $\mathbb{N}_1$
+\item E: $\mathbb{N}_2$
+\item a: $0_2$
+\item h: $S_2$
+\end{itemize}
 
-			\subsubsection{Exist\^encia de $\mathbb{N}$}
-				Seja J = todos os conjuntos X tal que satisfaz o ZF7 (\ref{sec:infinity})\\
-				$J = \{X \in \wp I \mid \emptyset \in X \land (\forall x \in X)[S \in X]\}$\\
-				\begin{multicols}{2}
-				Seja $\mathbb{N} \triangleq \cap J$\\ 
-				Seja $0_1 = \emptyset$\\ 
-				Seja $S_1 = \lambda x.\{x\}$ \footnote{Visiste \ref{sec:lambda} para $\lambda$-Calculus e entender melhor esse ponto}\\ 
+\begin{proof}
+$\pi : \mathbb{N}_1 \Rightarrow \mathbb{N}_2$\\
+$\pi[\mathbb{N}_1] = \mathbb{N}_2$
+\begin{itemize}
+\item $0_2 \in \pi[\mathbb{N}_1]$\\
+--> Como $\pi(0_1) \Rightarrow S_2n_2 \in \pi[\mathbb{N}_1]$
+\item $n_2 \in \pi[\mathbb{N}_1]$\\
+--> Suponha que $n_2 \in \pi[\mathbb{N}_1]$ --> H.I\\
+--> $(\exists n_1 \in \mathbb{N}_1)[\pi(n_1) = n_2]$\\
+--> $\pi(S_1n_1) = S_2(\pi(n_2))$ que $ = S_2n_2$\\
+\end{itemize}
 
-				Seja $\mathbb{N} \triangleq \cap J$\\
-				Seja $0_2 = \emptyset$\\
-				Seja $S_2 = \lambda x.x \cup \{x\} $ \footnote{Veja nota 1} 
-				\end{multicols}
+MAIS COISA AQUI DEPOIS...[?]
 
-			Encaixando com os Axiomas de Peano:
-			\begin{enumerate}
-			\item $(\forall x \in J)[\emptyset \in X]$, ent\~ao $\emptyset \in \cap J$ e $\emptyset \in \mathbb{N}$
-			\item Tamb\'em, pela pr\'opria defini\c{c}\~ao de J
-			\item $a \neq b \Leftrightarrow S_a \neq S_b$ ou $a \neq b \Leftrightarrow \{a\} \neq \{b\}$
-			\item $\forall x \{x\} \neq \emptyset$
-			\item Seja $X \subseteq \mathbb{N}$, tal que\\	
-					0 $\in$ X\\
-					$(\forall x \in X)[S_X \in X]$\\
-					Seja $n \in \mathbb{N}$\\
-					$\exists p : x = \{p\}$\\
-					--> Mesmo que $\{p\} \in \cap J = \mathbb{N}$\\
-					--> Mesmo que $n \in X$ e $x \geq \mathbb{N}$
-			\end{enumerate}
+\end{proof}
 
-			Basicamente, podemos descrever $\mathbb{N}$ de duas maneiras, agora:
-			\begin{multicols}{2}
-				\noindent 0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
-				1 \hspace{4bp} $\{\emptyset\} = \{0\}$\\
-				2 \hspace{4bp} $\{\{\emptyset\}\} = \{1\}$\\
-				3 \hspace{4bp} $\{\{\{\emptyset\}\}\} = \{2\}\\$
-				$\vdots$\\
-				\hspace{5bp} S = $\lambda$x.$\{x\}$ \\
+\subsection{String Recursion}
+\begin{itemize}
+\item Dado [ ] $\in$ [$\mathbb{N}$]
+\item Se $n \in \mathbb{N}$, e $L \in [\mathbb{N}]$, então $(n:L) \in [\mathbb{N}]$
+\end{itemize}
 
-				\noindent 0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
-				1 \hspace{4bp} $\{\emptyset\} = \{0\}$\\
-				2 \hspace{4bp} $\{\emptyset, \{\emptyset\}\} = \{0,1\}$\\
-				3 \hspace{4bp} $\{\emptyset, \{\emptyset\}\, \{\{\emptyset\}\}\}$\\
-				$\vdots$\\
-				\hspace{5bp} S = $\lambda x.x \cup \{x\} $
-			\end{multicols}
-			
-			\subsubsection{Singularidade de $\mathbb{N}$}
-				``$\mathbb{N}$ is unique up to isomorphism:''\\
-				$\pi$ : ($\mathbb{N}_1$; $0_1$; $S_1$) $ \rightarrowtail\!\!\!\!\!\rightarrow $ ($\mathbb{N}_1$; $0_2$; $S_2$).
-				\begin{itemize}
-				\item[]\hspace{4bp}$\pi (0_1) = 0_2$
-				\item[]\hspace{4bp}$\pi (S_1 n_1) = S_2 \pi (n_1)$
-				\end{itemize}
+Exemplo: 2:3:4:[~~] = [2,3,4]\\
 
-				Se tra\c{c}armos um paralelo com o Teorema da Recurs\~ao (\ref{sec:recursion}), para tentearmos provar a singularidade de $\mathbb{N}$, podemos realizar as seguintes associa\c{c}\~oes:
-				\begin{itemize}
-				\item $\mathbb{N}$ : $\mathbb{N}_1$
-				\item E: $\mathbb{N}_2$
-				\item a: $0_2$
-				\item h: $S_2$
-				\end{itemize}
+Alguns exemplos de funções recursivas que podemos definir utilizando String Recursion:
 
-				\begin{proof}
-					$\pi : \mathbb{N}_1 \Rightarrow \mathbb{N}_2$\\
-					$\pi[\mathbb{N}_1] = \mathbb{N}_2$
-						\begin{itemize}
-						\item $0_2 \in \pi[\mathbb{N}_1]$\\
-						--> Como $\pi(0_1) \Rightarrow S_2n_2 \in \pi[\mathbb{N}_1]$
-						\item $n_2 \in \pi[\mathbb{N}_1]$\\
-						--> Suponha que $n_2 \in \pi[\mathbb{N}_1]$ --> H.I\\
-						--> $(\exists n_1 \in \mathbb{N}_1)[\pi(n_1) = n_2]$\\
-						--> $\pi(S_1n_1) = S_2(\pi(n_2))$ que $ = S_2n_2$\\
-						\end{itemize}
-				
-						MAIS COISA AQUI DEPOIS
+\begin{flalign*}
+iszero : [\mathbb{N}] \rightarrow \mathbb{B}\\
+iszero~0 &= true&\\
+iszero~S_n &= false &
+\end{flalign*}
 
-				\end{proof}
+\begin{flalign*}
+empty : [\mathbb{N}] \rightarrow \mathbb{B}\\
+empty~[~~] &= true&\\
+empty~(x:x_s) &= false&
+\end{flalign*}
 
-		\subsection{String Recursion}
-			\begin{itemize}
-			\item Dado [ ] $\in$ [$\mathbb{N}$]
-			\item Se n $\in \mathbb{N}$, e L $\in [\mathbb{N}$], ent\~ao (n:L) $\in$ [$\mathbb{N}$]
-			\end{itemize}
+\begin{flalign*}
+++ : [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]\\
+[~~] ~ ++ ~ y_s &= y_s&\\
+(x:x_s) ~ ++ ~ y_s &= x:(x_s ++ y_s)&
+\end{flalign*}
 
-			Exemplo: 2:3:4:[ ] = [2,3,4]\\
+\begin{flalign*}
+Ex: [1,2] ++ [6,7,8,9] &= 1:2:[~~] ++ [6,7,8,9]&\\
+&= 1:(2:[~~] ++ [6,7,8,9])&\\
+&= 1:(2:([~~] ++ [6,7,8,9]))&\\
+&= 1:2:[6,7,8,9]&\\
+&= [1,2,6,7,8,9]&
+\end{flalign*}
 
-			Alguns exemplos de fun\c{c}\~oes recursivas que podemos definir utilizando String Recursion:
+\begin{flalign*}
+reverse : [\mathbb{N}] \rightarrow [\mathbb{N}]\\
+reverse [~~] &= [~~]&\\
+reverse [x] &= [x]&\\
+revese (x:x_s) &= reverse xs ++ [x]&
+\end{flalign*}
 
-			Iszero --> O elemento \'e 0?
-			\begin{itemize}
-			\item iszero : $[\mathbb{N}] \rightarrow \mathbb{B}$
-			\item iszero 0 = true
-			\item iszero $S_n$ = false \\
-			\end{itemize}
+\begin{flalign*}
+\sqsubseteq : [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}\\
+(x:x_s) \sqsubseteq [~~] &= false&\\
+'[~~] \sqsubseteq y_s &= true&\\
+(x:x_s) \sqsubseteq (y:y_s) &= (x = y) \land xs \sqsubseteq ys&
+\end{flalign*}
 
-			Emtpy --> A lista est\'a vazia?
-			\begin{itemize}
-			\item empty : $[\mathbb{N}/ \rightarrow \mathbb{B}$
-			\item empty [ ] = true
-			\item empty (x:$x_s$) = false\\
-			\end{itemize}
+\begin{flalign*}
+Ex: [2,3,4,5] \sqsubseteq [2,3,5,7] &= (2 = 2) \land ([3,4,5] \sqsubseteq [3,5,7])&\\
+&= (3 = 3) \land ([4,5] \sqsubseteq [5,7])&\\
+&= (4 = 5) \land ([5] \sqsubseteq [7])&\\
+&= \text{FALSE}&
+\end{flalign*}
 
-			Soma duas listas:
-			\begin{itemize}
-			\item ++ : $[\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}] $
-			\item '[ ] ++ $y_s$ = $y_s$
-			\item (x:$x_s$) ++ $y_s$ = x:($x_s$ ++ $y_s$)\\
-			\end{itemize}
-			Ex: [1,2] ++ [6,7,8,9]\\
-			= 1:2:[ ] ++ [6,7,8,9]\\
-			= 1:(2:[ ] ++ [6,7,8,9])\\
-			= 1:(2:([ ] ++ [6,7,8,9]))\\
-			= 1:2:[6,7,8,9]\\
-			= [1,2,6,7,8,9]\\
+\begin{flalign*}
+\in : \mathbb{N} \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}&\\
+n \in x [~~] &= false&\\
+x \in (x:x_s) &= (n = x) \vee (n \in x_s)&
+\end{flalign*}
 
-			Inverte a lista:
-			\begin{itemize}
-			\item reverse : $[\mathbb{N}] \rightarrow [\mathbb{N}] $
-			\item reverse [ ] = [ ]
-			\item reverse [x] = [x]
-			\item revese (x:xs) = reverse xs ++ [x]\\
-			\end{itemize}
+\begin{flalign*}
+find : \mathbb{N} \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}\\
+find n [~~] &= 0&\\
+find n (n:nx) &= 0&\\
+find n (x:x_s) &= 1 + find~n~x_s&
+\end{flalign*}
 
-			xs $\sqsubseteq$ ys se xs \'e um prefixo de ys
-			\begin{itemize}
-			\item $\sqsubseteq$ : $[\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}  $
-			\item (x:xs) $\sqsubseteq$ [ ] = false
-			\item '[ ] $\sqsubseteq$ ys = true
-			\item (x:xs) $\sqsubseteq$ (y:ys) = (x = y) $\land$ xs $\sqsubseteq$ ys\\
-			\end{itemize}
-			Ex: [2,3,4,5] $\sqsubseteq$ [2,3,5,7]\\
-			= (2 = 2) $\land$ ([3,4,5] $\sqsubseteq$ [3,5,7])\\
-			= (3 = 3) $\land$ ([4,5] $\sqsubseteq$ [5,7])\\
-			= (4 = 5) $\land$ ([5] $\sqsubseteq$ [7])\\
-			= FALSE\\
+\begin{flalign*}
+sum : [\mathbb{N}] \rightarrow \mathbb{N}&\\
+sum [~~] &= 0 & \\
+sum (x:xs) &= x + sum xs &
+\end{flalign*}
 
-			$\in$:
-			\begin{itemize}
-			\item $\in$ : $\mathbb{N} \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}$
-			\item n $\in$ x [ ] = false
-			\item x $\in$ (x:xs) = (n = x) $\vee$ (n $\in$ xs) \\
-			\end{itemize}
+\begin{flalign*}
+\oplus : [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]\\
+'[~~] \oplus y_s &= y_s &\\
+x_s \oplus [~~] &= x_s &\\
+(x:x_s) \oplus (y:y_s) &= (x+y):(x_s \oplus y_s) &
+\end{flalign*}
 
-			Find:
-			\begin{itemize}
-			\item find : $\mathbb{N} \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}$
-			\item find n [ ] = 0
-			\item find n (n:nx) = 0
-			\item find n (x:xs) = 1 + find n xs\\
-			\end{itemize}
+\begin{flalign*}
+circle :(\mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathbb{N}) \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]\\
+circle f [~~] y_s &= [~~]\\
+f xs [~~] &= [~~]\\
+f (x:x_s) (y:y_s) &= [f x y]:(circle~f~x_s~y_s)
+\end{flalign*}
 
-			Sum:
-			\begin{itemize}
-			\item sum : $[\mathbb{N}] \rightarrow \mathbb{N}$
-			\item sum [ ] = 0
-			\item sum (x:xs) = x + sum xs\\
-			\end{itemize}
+\section{$\lambda$-Calculus}
+\label{sec:lambda}
+\subsection{O conjunto de $\lambda$-termos}
+Sendo $\Lambda = \lambda$-termos;
+\begin{flalign*}
+X &\in \Lambda&\\
+s,t &\in \Lambda \Rightarrow (s~t) \in \Lambda&\\
+x \in var, t \in \Lambda &\Rightarrow \lambda X.t \in \Lambda&
+\end{flalign*}
 
-			$\oplus$
-			\begin{itemize}
-			\item $\oplus$ : $[\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]$
-			\item '[ ] $\oplus$ ys = ys
-			\item xs $\oplus$ [ ] = xs
-			\item (x:xs) $\oplus$ (y:ys) = (x+y):(xs $\oplus$ ys)\\
-			\end{itemize}
+\subsection{Conversões $\alpha,~ \beta~ e~ \eta~$}
+\subsubsection{Conversão $\alpha$}
+Determina que a escolha da variável ligada, na abstração lambda, não importa (normalmente):
+\begin{flalign*}
+\lambda x.x &=_\alpha \lambda y.y&\\
+\lambda x.\lambda x.x &=_\alpha \lambda y.\lambda x.x & && \text{Note que isso não poderá ser transformado em } \lambda y.\lambda x.y
+\end{flalign*}
 
-			Circle:
-			\begin{itemize}
-			\item circle :$(\mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathbb{N}) \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]$
-			\item circle f [ ] ys = [ ]
-			\item f xs [ ] = [ ]
-			\item f (x:xs) (y:ys) = [f x y]:(circle f xs ys)\\
-			\end{itemize}
+Primeiro, quando alfa-conversão atua em uma abstração, as únicas ocorrências de variáveis que podem ser renomeados são aqueles que são vinculados a esta mesma abstração. No segundo exemplo, portanto:
 
-	\section{$\lambda$-Calculus}
-	\label{sec:lambda}
-		\subsection{O conjunto de $\lambda$-termos}
-		\subsection{$\alpha,~ \beta~ e~ \eta~$ conversions}
-		\subsection{Booleanos naturais no $\Lambda$}
-		\subsection{Combinators I, K, B, S}
+\begin{flalign*}
+\lambda x.\lambda x.x &\not=_\alpha \lambda y.\lambda x.y & &&\text{Este último tem um significado diferente do original.}
+\end{flalign*}
 
+Em segundo lugar, uma conversão $\alpha$ não é possível se isto irá resultar em uma variável sendo capturada por uma abstração diferente. Por exemplo, se substituirmos $x$ com $y$ em $\lambda x.\lambda y.x$, nós obteríamos $\lambda y.\lambda y.y$, que tem um significado diferente da expressão anterior.
+
+\subsubsection{Redução $\beta$}
+Redução $\beta$ é a ideia de aplicar uma função. Por exemplo, se temos $f(x) = x*2$, para $x = 2$ aplicamos o valor a função que irá ficar como $f(2) = 2*2$. Essa é basicamente a ideia da redução $\beta$.
+\begin{flalign*}
+(\lambda x.x*2)~2 &=_\beta 2*2 &
+\end{flalign*}
+\subsubsection{Redução $\eta$}
+Eta-conversão expressa a ideia de extensionalidade, que neste contexto é que duas funções são as mesmas se e somente se eles dão o mesmo resultado para todos os argumentos.\footnote{Sujeito a severas mudanças no futuro. Visite \ref{sec:colaboracao} para saber mais sobre.}
+
+\subsection{Booleanos naturais no $\Lambda$}
+\begin{align*}
+\lambda y.x = \lambda x.(\lambda y.x) &\coloneqq true \coloneqq fst\\
+\lambda x.y = \lambda x.(\lambda y.y) &\coloneqq false \coloneqq snd
+\end{align*}
+\subsection{Combinators I, K, B, S}
+Combinadores\footnote{A melhorar bruscamente}
+
+\begin{flalign*}
+I &= \lambda x.x &\\
+B &= \lambda x \lambda y . \lambda z . x (yz) & &&\text{``Composition''}\\
+S &= \lambda x \lambda y . \lambda z. \lambda xz(yz) &
+\end{flalign*}
+
+\section{Política de Colaboração}
+\label{sec:colaboracao}
+Você é capaz de alterar o conteúdo desse documento, para corrigir erros, melhorar suas explicações ou dar dicas/exemplos adicionais. Esse foi o objetivo desde começo.
+
+\href{https://github.com/YuriAlessandro/BTI-Documents/blob/master/FMC2/fmc2_un2.tex}{Visita a página remota do documento} para obter sua versão mais atualizada e/ou colaborar também.
+
+Como base foram utilizados os livros ``Notes on Set Theory''\cite{moschovakis2006notes} e ``Classic Set Theory''\cite{goldrei1996classic}. Caso você queira continuar usando-os como base para esse documento, sinta-se a vontade.
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{fmc2_un2_refs}
 
 \end{document}
