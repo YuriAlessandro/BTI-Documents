@@ -216,10 +216,15 @@ Seja $x,y \in A$, e $\backsim$ uma relação de equivalência no $A$:
 \cup\{[x/ \backsim] \mid x \in a \} &= A
 \end{align*}
 
-\subsubsection{Funções}
+\subsubsection{Funções parciais na ZFC}
+O conceito de funções parciais remete a ideia de uma função em que nem todos os $x$ possuem uma $f(x)$. B
+\begin{align*}
+f: \mathbb{N} \to \mathbb{N} && \text{Domínio da função}\\
+f(x) = \sqrt[2]{x} && x = 3 \text{ não possui uma saída bem definida nesse domínio.}
+\end{align*}
 
 \subsection{Currying}
-Dada uma função $f$ do tipo $f:(X \times X) \rightarrow Z$, então a técnica de \textbf{currying} a torna $(f): X \rightarrow (Y \rightarrow Z)$.
+Dada uma $f$ do tipo $f:(X \times X) \rightarrow Z$, então a técnica de \textbf{currying} a torna $(f): X \rightarrow (Y \rightarrow Z)$.
 Isto é, currying torna um paramêtro do tipo $X$ e retorna uma função do tipo $Y \rightarrow Z$.\\
 
 
