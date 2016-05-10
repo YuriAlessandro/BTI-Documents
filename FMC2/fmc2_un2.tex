@@ -44,7 +44,7 @@ urlcolor={blue!80!black}
 {\large Natal/RN}\\[0.2cm]
 {\large \today}
 \end{center}
-\end{titlepage} 
+\end{titlepage}
 
 \tableofcontents
 \clearpage
@@ -56,24 +56,24 @@ urlcolor={blue!80!black}
 \label{sec:extensionalidade}
 Para quaisquer conjuntos $A, B$:\\
 \begin{center}
-$A = B ~ \iff ~ (\forall x ) (x \in A ~ \iff ~ x \in B) $
+$ A = B ~ \iff ~ (\forall x ) (x \in A ~ \iff ~ x \in B) $
 \end{center}
 \subsubsection{Emptyset}
 \label{sec:emptyset}
 Garante que existe um conjunto vazio ($\emptyset$). \\
 \begin{center}
-$ \exists x \forall y ~ y \in\!\!\!\!\!/ ~~ x $
+$ \exists x \forall y ~ (y~\notin~x) $
 \end{center}
 \subsubsection{Pairset}
 Para todo $a$ e $b$, existe o conjunto $\{a,b\}$.\\
 \begin{center}
-$ \forall a \forall ~ \exists w \forall x (x \epsilon w ~ \iff ~ x = a ~\vee~ x = b ) $
+$ {\forall a} {\forall b} ~ {\exists w} {\forall x} (x \in w ~ \iff ~ x = a ~\vee~ x = b ) $
 \end{center}
 \subsubsection{Separation}
 \label{sec:separation}
 Para cada condição $P(x)$,\\
 \begin{center}
-$ \forall a \exists w \forall x (x \epsilon w ~ \iff ~ x \epsilon a ~\wedge~ x \epsilon b )$
+$ \forall a \exists w \forall x (x \in w ~ \iff ~ x \in a ~\wedge~ x \in b )$
 \end{center}
 
 Um problema de usar somente esses últimos três axiomas é que só somos capazes de formar
@@ -81,14 +81,14 @@ conjuntos com cardinalidade $\leq$ 2.
 \begin{itemize}
 \item ZF4 (\ref{sec:separation}) é um  \underline{axiom-scheme}. Isto é, possui infinitos axiomas dentro dele, já que
 para cada P(x) estamos formando um novo axioma.
-\end{itemize} 	
+\end{itemize}
 
 \begin{description}
 \item[-] Usando os axiomas anteriores, é possível representarmos algumas coisas como conjuntos:
 \begin{itemize}
 \item (x, y) $\triangleq$ \{ \{x\}, \{x, y\}\}	\label{teste}
 \item A $\setminus$ B $\triangleq$ \{ x $\in$ A ~$\mid$~ x $\in\!\!\!\!\!/$ B \}
-\item $ A \cap B \triangleq \{ x \in A \mid x \in B \} $ 
+\item $ A \cap B \triangleq \{ x \in A \mid x \in B \} $
 \end{itemize}
 \end{description}
 
@@ -142,7 +142,7 @@ $\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow x ~\cup~ 
 Esse axioma é garantido pois\\
 \begin{align*}
 \{x\} &\ne x \\
-x \cup \{x\} &\ne x 
+x \cup \{x\} &\ne x
 \end{align*}
 
 Com ele, somos capazes de montar o seguinte conjunto infinito:\\
@@ -159,13 +159,13 @@ PROOF AND MORE DETAILS...
 
 Def: Sejam $A,B$ conjuntos, $R$ é uma relação \underline{entre} $A$ e $B$ se $R \subseteq A \times B$.
 
-Dessa forma, 
+Dessa forma,
 \begin{itemize}
 \item $f(a) = b \rightsquigarrow (a,b) \in f$
 \end{itemize}
 
 \begin{itemize}
-\item[-] União Disjunta: $A \uplus B = (\{0,a\} \times A) \cup (\{1,b\} \times B)$				
+\item[-] União Disjunta: $A \uplus B = (\{0,a\} \times A) \cup (\{1,b\} \times B)$
 \end{itemize}
 
 Sendo $R$ uma relação sobre o conjunto $\mathbb{N} (R \subseteq A \times A), R$ pode ser:
@@ -174,7 +174,7 @@ Sendo $R$ uma relação sobre o conjunto $\mathbb{N} (R \subseteq A \times A), R
 x R x &: Reflexiva \rightsquigarrow `` =, ~\leq, ~\geq, ~\subseteq ''\\
 x R y \Rightarrow  y R x  &: Simetrica \rightsquigarrow `` =  ''\\
 x R y \land y R z \Rightarrow x R z &: Transitiva \rightsquigarrow  `` =, ~\leq, ~\geq, ~<, ~>, ~\subseteq ''
-\end{align*}	
+\end{align*}
 
 Ainda existem outras propriedas como essas, como a \underline{Antireflexiva} ou \underline{Antisimétrica}.
 
@@ -208,7 +208,7 @@ Seja $x,y \in A$, e $\backsim$ uma relação de equivalência no $A$:
 \begin{align*}
 [x/\backsim] = [y/\backsim] &\iff x \backsim y\\
 [x/\backsim] = [y/\backsim] &\iff
-\begin{cases} 
+\begin{cases}
 [x/\backsim] 	& \text{se } x \backsim y \\
 \emptyset 		& \text{se não}\\
 \end{cases}
@@ -238,8 +238,8 @@ Seja $A$ um conjunto. O que é $|A|$?
 \begin{itemize}
 \item[c1.] $A =_c |A|$
 \item[c2.] $A =_c B \iff |A| = |B|$
-\item[c3.] para todo conjunto de conjuntos $\epsilon$,\\
-$\{|x| \mid x \in \epsilon \}$ é conjunto.
+\item[c3.] para todo conjunto de conjuntos $\in$,\\
+$\{|x| \mid x \in \in \}$ é conjunto.
 \end{itemize}
 
 Aqui estaremos definindo funções cardinais fracas (\textbf{weak}). Isso porquê seria necessário provar o c2, algo extremamanete complicado agora. Portanto, podemos o resumir como:\\
@@ -297,13 +297,13 @@ Para tal, iremos precisar do Teorema da Recursão (\ref{sec:recursion}).
 Seja $J$ = todos os conjuntos $X$ tal que satisfaz o ZF7 (\ref{sec:infinity})\\
 $J = \{X \in \wp I \mid \emptyset \in X \land (\forall x \in X)[S \in X]\}$\\
 \begin{multicols}{2}
-\noindent Seja $\mathbb{N} \triangleq \cap J$\\ 
-Seja $0_1 = \emptyset$\\ 
-Seja $S_1 = \lambda x.\{x\}$ \footnote{Visiste \ref{sec:lambda} para $\lambda$-Calculus e entender melhor esse ponto}\\ 
+\noindent Seja $\mathbb{N} \triangleq \cap J$\\
+Seja $0_1 = \emptyset$\\
+Seja $S_1 = \lambda x.\{x\}$ \footnote{Visiste \ref{sec:lambda} para $\lambda$-Calculus e entender melhor esse ponto}\\
 
 \noindent Seja $\mathbb{N} \triangleq \cap J$\\
 Seja $0_2 = \emptyset$\\
-Seja $S_2 = \lambda x.x \cup \{x\} $ \footnote{Veja nota 1} 
+Seja $S_2 = \lambda x.x \cup \{x\} $ \footnote{Veja nota 1}
 \end{multicols}
 
 Encaixando com os Axiomas de Peano:
@@ -312,7 +312,7 @@ Encaixando com os Axiomas de Peano:
 \item Também, pela própria definição de J
 \item $a \neq b \iff S_a \neq S_b$ ou $a \neq b \iff \{a\} \neq \{b\}$
 \item $\forall x \{x\} \neq \emptyset$
-\item Seja $X \subseteq \mathbb{N}$, tal que\\	
+\item Seja $X \subseteq \mathbb{N}$, tal que\\
 0 $\in$ X\\
 $(\forall x \in X)[S_X \in X]$\\
 Seja $n \in \mathbb{N}$\\
