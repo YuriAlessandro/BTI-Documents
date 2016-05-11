@@ -5,14 +5,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,latexsym}
-%\usepackage{amssymb}
 \usepackage{amsthm}
-%\usepackage{amsmath}
 \usepackage{amstext}
 \usepackage{multicol}
 \usepackage{qtree}
 \usepackage{mathtools}
 \usepackage{cite}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
 
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
@@ -45,6 +44,19 @@ urlcolor={blue!80!black}
 {\large \today}
 \end{center}
 \end{titlepage}
+
+\begin{center}
+\large \textbf{O que é esse documento?}
+\end{center}
+
+Esse é um documento que visa resumir o conteúdo apresentado em sala de aula na disciplina \textbf{Fundamentos Matemáticos da Computação} da \textbf{Universidade Federal do Rio Grande do Norte}, durante o descorrer da segunda unidade, matéria essa da grade curricular do curso de \textbf{Bacharelado em Tecnologia da Informação}. 
+
+Tenha em vista que esse documento não server como base concreta/completa de estudo. Ele, na verdade, visa resumir e direcionar o estudo da disciplina. Dessa forma, cabe ao aluno buscar formas complementares de entender o que está sendo dito aqui, como, por exemplo, o material referência utilizado.
+
+Saiba também que esse é um material \textit{open-source}, que pode ter sido alterado por diversas pessoas (você pode conferir isso em \ref{sec:colaboracao} - Política de Colaboração), e portanto pode não refletir um conteúdo totalmente ``padronizado''.
+
+
+\clearpage
 
 \tableofcontents
 \clearpage
@@ -455,9 +467,9 @@ x_s \oplus [~~] &= x_s &\\
 
 \begin{flalign*}
 circle :(\mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathbb{N}) \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]\\
-circle f [~~] y_s &= [~~]\\
-f xs [~~] &= [~~]\\
-f (x:x_s) (y:y_s) &= [f x y]:(circle~f~x_s~y_s)
+circle f [~~] y_s &= [~~] &\\
+f xs [~~] &= [~~] &\\
+f (x:x_s) (y:y_s) &= [f x y]:(circle~f~x_s~y_s) &
 \end{flalign*}
 
 \section{$\lambda$-Calculus}
@@ -514,8 +526,15 @@ Você é capaz de alterar o conteúdo desse documento, para corrigir erros, melh
 
 \href{https://github.com/YuriAlessandro/BTI-Documents/blob/master/FMC2/fmc2_un2.tex}{Visita a página remota do documento} para obter sua versão mais atualizada e/ou colaborar também.
 
-Como base foram utilizados os livros ``Notes on Set Theory''\cite{moschovakis2006notes} e ``Classic Set Theory''\cite{goldrei1996classic}. Caso você queira continuar usando-os como base para esse documento, sinta-se a vontade.
+Como base foram utilizados os livros ``Notes on Set Theory''\cite{moschovakis2006notes} e ``Classic Set Theory''\cite{goldrei1996classic}. Caso você queira continuar usando-os como base para esse documento, sinta-se a vontade. Caso você queira, também, utilizar outras fontes, não deixe de citá-las para que sejam adicionadas as refêrencias. Tenha em mente que outros estudantes podem estar querendo estudar baseado nesse documento, então busque sempre informações confiáveis que podem ser atestadas (por meio da biblografia, por exemplo).
 
+\subsection{Colaboradores}
+\begin{itemize}
+\item \href{https://github.com/YuriAlessandro}{Yuri Alessandro Martins}
+\item \href{http://www.tsouanas.org/}{Thanos Tsouanas}
+\item \href{https://github.com/eltonvs}{Elton Viana}
+\item Gilney Junior
+\end{itemize}
 \clearpage
 \bibliographystyle{plain}
 \bibliography{fmc2_un2_refs}
