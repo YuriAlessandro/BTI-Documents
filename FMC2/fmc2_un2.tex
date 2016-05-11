@@ -87,7 +87,7 @@ para cada P(x) estamos formando um novo axioma.
 \item[-] Usando os axiomas anteriores, é possível representarmos algumas coisas como conjuntos:
 \begin{itemize}
 \item (x, y) $\triangleq$ \{ \{x\}, \{x, y\}\}	\label{teste}
-\item A $\setminus$ B $\triangleq$ \{ x $\in$ A ~$\mid$~ x $\in\!\!\!\!\!/$ B \}
+\item A $\setminus$ B $\triangleq$ \{ x $\in$ A ~$\mid$~ x $\notin$ B \}
 \item $ A \cap B \triangleq \{ x \in A \mid x \in B \} $
 \end{itemize}
 \end{description}
@@ -95,12 +95,12 @@ para cada P(x) estamos formando um novo axioma.
 \subsubsection{Powerset $\wp$}
 Para cada conjunto $a$, existe um conjunto $b$, onde os elementos de $b$ são subconjuntos de $a$.
 \begin{center}
-$\forall a \exists p \forall w ( x \in p ~ \iff ~ \forall x (x \in a \Rightarrow x \in b))$
+$\forall a \exists p \forall x ( x \in p ~ \iff ~ \forall x (x \in a \implies x \in b))$
 \end{center}
 
 Esse é o conjunto $\wp$(a).
 
-Aqui $x \in a$ é uma abreviação de $(\forall t)[t \in x \Rightarrow t \in a]$. O Axioma da Extensionalidade (\ref{sec:extensionalidade}) implica que para cada a, apenas um conjunto b pode satisfazer a defininção do Powerset; Nós podemos chamar \textbf{Conjunto Potência} de a e denotá-lo como:\\
+Aqui $x \in a$ é uma abreviação de $(\forall t)[t \in x \implies t \in a]$. O Axioma da Extensionalidade (\ref{sec:extensionalidade}) implica que para cada a, apenas um conjunto b pode satisfazer a defininção do Powerset; Nós podemos chamar \textbf{Conjunto Potência} de a e denotá-lo como:\\
 $\wp(a) \triangleq \{x \mid Set(x) \& x \in a \}$\\
 
 Algumas propriedades interesantes:\\
@@ -136,8 +136,8 @@ Onde $S = \wp(\wp(a \cup b))$
 
 \subsubsection{Infinity Axiom}
 \label{sec:infinity}
-$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow \{x\} ~\in~ I ))$ ou\\
-$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \Rightarrow x ~\cup~ \{x\} ~\in~ I ))$\\
+$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \implies \{x\} ~\in~ I ))$ ou\\
+$\exists I (\emptyset ~\in~ I ~\land~ \forall x (x ~\in~ I \implies x ~\cup~ \{x\} ~\in~ I ))$\\
 
 Esse axioma é garantido pois\\
 \begin{align*}
@@ -161,7 +161,7 @@ Def: Sejam $A,B$ conjuntos, $R$ é uma relação \underline{entre} $A$ e $B$ se 
 
 Dessa forma,
 \begin{itemize}
-\item $f(a) = b \rightsquigarrow (a,b) \in f$
+\item $f(a) = b \leadsto (a,b) \in f$
 \end{itemize}
 
 \begin{itemize}
@@ -171,9 +171,9 @@ Dessa forma,
 Sendo $R$ uma relação sobre o conjunto $\mathbb{N} (R \subseteq A \times A), R$ pode ser:
 
 \begin{align*}
-x R x &: Reflexiva \rightsquigarrow `` =, ~\leq, ~\geq, ~\subseteq ''\\
-x R y \Rightarrow  y R x  &: Simetrica \rightsquigarrow `` =  ''\\
-x R y \land y R z \Rightarrow x R z &: Transitiva \rightsquigarrow  `` =, ~\leq, ~\geq, ~<, ~>, ~\subseteq ''
+x R x &: Reflexiva \leadsto `` =, ~\leq, ~\geq, ~\subseteq ''\\
+x R y \implies  y R x  &: Simetrica \leadsto `` =  ''\\
+x R y \land y R z \implies x R z &: Transitiva \leadsto  `` =, ~\leq, ~\geq, ~<, ~>, ~\subseteq ''
 \end{align*}
 
 Ainda existem outras propriedas como essas, como a \underline{Antireflexiva} ou \underline{Antisimétrica}.
@@ -263,13 +263,13 @@ Sejam $\kappa, \lambda, \mu$ números cardinais:
 S: \mathbb{N} &\rightarrow \mathbb{N}\\
 S: \mathbb{N} &\rightarrowtail \mathbb{N}\\
 (\forall x \in \mathbb{N})&[S_n \neq 0 ]\\
-(\forall x \subseteq \mathbb{N})&[ [0 \in X \land (\forall n \in \mathbb{N}) [n \in X \Rightarrow S_n \in X ]] \Rightarrow X = \mathbb{N}]
+(\forall x \subseteq \mathbb{N})&[ [0 \in X \land (\forall n \in \mathbb{N}) [n \in X \implies S_n \in X ]] \implies X = \mathbb{N}]
 \end{align*}
 
 O axioma de peano 5 é o que nos permite realizar indução matemática. Observe:
 \begin{align*}
 \forall x \subseteq \mathbb{N}~&corresponde~a~\textbf{base}.\\
-(\forall n \in \mathbb{N}) [n \in X \Rightarrow S_n \in X] ~&corresponde~ao~\textbf{passo indutivo}.\\
+(\forall n \in \mathbb{N}) [n \in X \implies S_n \in X] ~&corresponde~ao~\textbf{passo indutivo}.\\
 n \in X ~&corresponde~a~\textbf{hipotése indutiva}.
 \end{align*}
 
@@ -355,11 +355,11 @@ Se traçarmos um paralelo com o Teorema da Recursão (\ref{sec:recursion}), para
 \end{itemize}
 
 \begin{proof}
-$\pi : \mathbb{N}_1 \Rightarrow \mathbb{N}_2$\\
+$\pi : \mathbb{N}_1 \implies \mathbb{N}_2$\\
 $\pi[\mathbb{N}_1] = \mathbb{N}_2$
 \begin{itemize}
 \item $0_2 \in \pi[\mathbb{N}_1]$\\
---> Como $\pi(0_1) \Rightarrow S_2n_2 \in \pi[\mathbb{N}_1]$
+--> Como $\pi(0_1) \implies S_2n_2 \in \pi[\mathbb{N}_1]$
 \item $n_2 \in \pi[\mathbb{N}_1]$\\
 --> Suponha que $n_2 \in \pi[\mathbb{N}_1]$ --> H.I\\
 --> $(\exists n_1 \in \mathbb{N}_1)[\pi(n_1) = n_2]$\\
@@ -466,8 +466,8 @@ f (x:x_s) (y:y_s) &= [f x y]:(circle~f~x_s~y_s)
 Sendo $\Lambda = \lambda$-termos;
 \begin{flalign*}
 X &\in \Lambda&\\
-s,t &\in \Lambda \Rightarrow (s~t) \in \Lambda&\\
-x \in var, t \in \Lambda &\Rightarrow \lambda X.t \in \Lambda&
+s,t &\in \Lambda \implies (s~t) \in \Lambda&\\
+x \in var, t \in \Lambda &\implies \lambda X.t \in \Lambda&
 \end{flalign*}
 
 \subsection{Conversões $\alpha,~ \beta~ e~ \eta~$}
