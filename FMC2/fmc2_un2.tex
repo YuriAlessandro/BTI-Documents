@@ -160,12 +160,12 @@ x \cup \{x\} &\ne x
 Com ele, somos capazes de montar o seguinte conjunto infinito:\\
 I = $\{ \emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \cdots \}$
 
-\subsection{Relações, Funções e Funções parciais na ZFC}
+\subsection{Relações e Funções Parciais}
 \subsubsection{Definindo um par ordenado}
 A operação de par do Kuratowski:\\
 $ (x, y) = \{ \{x\}, \{x, y\}\} $, como vimos anteriormente na seção~\ref{sec:separation}\\
 
-PROOF AND MORE DETAILS...
+Provar!\footnote{Prova e mais detalhes sobre esse assunto serão posteriormente adicionados}
 
 \subsubsection{Relações}
 
@@ -200,7 +200,7 @@ $\cup [a] = A$
 \end{center}
 
 \begin{itemize}
-\item $[a] \cap [b] = \emptyset quando [a] \neq[b]$\\
+\item $[a] \cap [b] = \emptyset ~quando~ [a]~ \neq[b]$\\
 \end{itemize}
 
 Uma partição de um conjunto $S$ é uma coleção de subconjuntos disjuntos não vazios de $S$. A união de todas as partições resulta, portanto, em $S$. Em outras palavras, os subconjuntos $A_i$ formam partições de $S$ se e somente se\\
@@ -229,7 +229,7 @@ Seja $x,y \in A$, e $\backsim$ uma relação de equivalência no $A$:
 \end{align*}
 
 \subsubsection{Funções parciais na ZFC}
-O conceito de funções parciais remete a ideia de uma função em que nem todos os $x$ possuem uma $f(x)$. B
+O conceito de funções parciais remete a ideia de uma função em que nem todos os $x$ possuem uma $f(x)$.
 \begin{align*}
 f: \mathbb{N} \to \mathbb{N} && \text{Domínio da função}\\
 f(x) = \sqrt[2]{x} && x = 3 \text{ não possui uma saída bem definida nesse domínio.}
@@ -242,7 +242,7 @@ Isto é, currying torna um paramêtro do tipo $X$ e retorna uma função do tipo
 
 \noindent Achar um $\phi ( (x,y) \rightarrow A \rightarrowtail\!\!\!\!\!\rightarrow (x \rightarrow (y \rightarrow A)))$\\
 $\phi(F) = G$, onde $G$ é definida pela,\\
-$G(x)(y) = g$, ode $g$ é definida pela,\\
+$G(x)(y) = g$, onde $g$ é definida pela,\\
 $g(y), f(x,y)$
 
 \subsection{Cardinais}
@@ -250,8 +250,8 @@ Seja $A$ um conjunto. O que é $|A|$?
 \begin{itemize}
 \item[c1.] $A =_c |A|$
 \item[c2.] $A =_c B \iff |A| = |B|$
-\item[c3.] para todo conjunto de conjuntos $\in$,\\
-$\{|x| \mid x \in \in \}$ é conjunto.
+\item[c3.] para todo conjunto de conjuntos $\epsilon$,\\
+$\{|x| \mid x \in \epsilon \}$ é conjunto.
 \end{itemize}
 
 Aqui estaremos definindo funções cardinais fracas (\textbf{weak}). Isso porquê seria necessário provar o c2, algo extremamanete complicado agora. Portanto, podemos o resumir como:\\
@@ -261,11 +261,11 @@ Aqui estaremos definindo funções cardinais fracas (\textbf{weak}). Isso porqu�
 \end{itemize}
 
 Sejam $\kappa, \lambda, \mu$ números cardinais:
-\begin{itemize}
-\item $\kappa + \lambda \triangleq_c \kappa \uplus \lambda$
-\item $\kappa . \lambda \triangleq_c \kappa \times \lambda$
-\item $\kappa^\lambda \triangleq_c (\kappa \to \lambda)$
-\end{itemize}
+\begin{align*}
+\kappa + \lambda &\triangleq_c \kappa \uplus \lambda & \\
+\kappa . \lambda &\triangleq_c \kappa \times \lambda & \\
+\kappa^\lambda &\triangleq_c (\kappa \to \lambda) &
+\end{align*}
 
 \subsection{Os Axiomas de Peano}
 \textbf{Structed set}: $(\mathbb{N}; 0; S)$, onde $0 \in \mathbb{N}$ e $S:\mathbb{N} \rightarrow \mathbb{N}$\\
@@ -308,6 +308,10 @@ Para tal, iremos precisar do Teorema da Recursão (\ref{sec:recursion}).
 \subsubsection{Existência de $\mathbb{N}$}
 Seja $J$ = todos os conjuntos $X$ tal que satisfaz o ZF7 (\ref{sec:infinity})\\
 $J = \{X \in \wp I \mid \emptyset \in X \land (\forall x \in X)[S \in X]\}$\\
+
+%RETIRAR ISSO DAQUI DEPOIS, URGENTEMENTE!
+\clearpage
+
 \begin{multicols}{2}
 \noindent Seja $\mathbb{N} \triangleq \cap J$\\
 Seja $0_1 = \emptyset$\\
@@ -351,20 +355,20 @@ $\vdots$\\
 \end{multicols}
 
 \subsubsection{Singularidade de $\mathbb{N}$}
-``$\mathbb{N}$ is unique up to isomorphism:''\\
-$\pi$ : ($\mathbb{N}_1$; $0_1$; $S_1$) $ \rightarrowtail\!\!\!\!\!\rightarrow $ ($\mathbb{N}_1$; $0_2$; $S_2$).
-\begin{itemize}
-\item[]\hspace{4bp}$\pi (0_1) = 0_2$
-\item[]\hspace{4bp}$\pi (S_1 n_1) = S_2 \pi (n_1)$
-\end{itemize}
+``$\mathbb{N}$ is unique up to isomorphism:''
+\begin{align*}
+\pi : (\mathbb{N}_1; 0_1; S_1)  &\rightarrowtail\!\!\!\!\!\rightarrow  (\mathbb{N}_1; 0_2; S_2).\\
+\hspace{4bp}\pi (0_1) &= 0_2\\
+\pi (S_1 n_1) &= S_2 \pi (n_1)
+\end{align*}
 
 Se traçarmos um paralelo com o Teorema da Recursão (\ref{sec:recursion}), para tentarmos provar a singularidade de $\mathbb{N}$, podemos realizar as seguintes associações:
-\begin{itemize}
-\item $\mathbb{N}$ : $\mathbb{N}_1$
-\item E: $\mathbb{N}_2$
-\item a: $0_2$
-\item h: $S_2$
-\end{itemize}
+\begin{flalign*}
+\mathbb{N} &: \mathbb{N}_1\\
+E&:~ \mathbb{N}_2 &\\
+a&:~ 0_2 &\\
+h&:~ S_2 &
+\end{flalign*}
 
 \begin{proof}
 $\pi : \mathbb{N}_1 \implies \mathbb{N}_2$\\
@@ -378,7 +382,7 @@ $\pi[\mathbb{N}_1] = \mathbb{N}_2$
 --> $\pi(S_1n_1) = S_2(\pi(n_2))$ que $ = S_2n_2$\\
 \end{itemize}
 
-MAIS COISA AQUI DEPOIS...[?]
+... \footnote{Essa prova ainda não está terminada.}
 
 \end{proof}
 
@@ -393,13 +397,13 @@ Exemplo: 2:3:4:[~~] = [2,3,4]\\
 Alguns exemplos de funções recursivas que podemos definir utilizando String Recursion:
 
 \begin{flalign*}
-iszero : [\mathbb{N}] \rightarrow \mathbb{B}\\
+iszero ~:~ [\mathbb{N}] \rightarrow \mathbb{B}\\
 iszero~0 &= true&\\
 iszero~S_n &= false &
 \end{flalign*}
 
 \begin{flalign*}
-empty : [\mathbb{N}] \rightarrow \mathbb{B}\\
+empty ~:~ [\mathbb{N}] \rightarrow \mathbb{B}\\
 empty~[~~] &= true&\\
 empty~(x:x_s) &= false&
 \end{flalign*}
@@ -419,14 +423,14 @@ Ex: [1,2] ++ [6,7,8,9] &= 1:2:[~~] ++ [6,7,8,9]&\\
 \end{flalign*}
 
 \begin{flalign*}
-reverse : [\mathbb{N}] \rightarrow [\mathbb{N}]\\
-reverse [~~] &= [~~]&\\
-reverse [x] &= [x]&\\
-revese (x:x_s) &= reverse xs ++ [x]&
+reverse ~:~ [\mathbb{N}] \rightarrow [\mathbb{N}]\\
+reverse ~[~~] &= [~~]&\\
+reverse ~[x] &= [x]&\\
+revese ~(x:x_s) &= reverse xs ++ [x]&
 \end{flalign*}
 
 \begin{flalign*}
-\sqsubseteq : [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}\\
+\sqsubseteq ~:~ [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}\\
 (x:x_s) \sqsubseteq [~~] &= false&\\
 '[~~] \sqsubseteq y_s &= true&\\
 (x:x_s) \sqsubseteq (y:y_s) &= (x = y) \land xs \sqsubseteq ys&
@@ -440,36 +444,36 @@ Ex: [2,3,4,5] \sqsubseteq [2,3,5,7] &= (2 = 2) \land ([3,4,5] \sqsubseteq [3,5,7
 \end{flalign*}
 
 \begin{flalign*}
-\in : \mathbb{N} \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}&\\
-n \in x [~~] &= false&\\
+\in ~:~ \mathbb{N} \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}&\\
+n \in x ~[~~] &= false&\\
 x \in (x:x_s) &= (n = x) \vee (n \in x_s)&
 \end{flalign*}
 
 \begin{flalign*}
 find : \mathbb{N} \rightarrow [\mathbb{N}] \rightarrow \mathbb{B}\\
-find n [~~] &= 0&\\
-find n (n:nx) &= 0&\\
-find n (x:x_s) &= 1 + find~n~x_s&
+find~n~[~~] &= 0&\\
+find~n~(n:nx) &= 0&\\
+find~n~(x:x_s) &= 1 + find~n~x_s&
 \end{flalign*}
 
 \begin{flalign*}
-sum : [\mathbb{N}] \rightarrow \mathbb{N}&\\
+sum~:~[\mathbb{N}] \rightarrow \mathbb{N}&\\
 sum [~~] &= 0 & \\
 sum (x:xs) &= x + sum xs &
 \end{flalign*}
 
 \begin{flalign*}
-\oplus : [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]\\
+\oplus~:~[\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]\\
 '[~~] \oplus y_s &= y_s &\\
 x_s \oplus [~~] &= x_s &\\
 (x:x_s) \oplus (y:y_s) &= (x+y):(x_s \oplus y_s) &
 \end{flalign*}
 
 \begin{flalign*}
-circle :(\mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathbb{N}) \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]\\
-circle f [~~] y_s &= [~~] &\\
+circle~:~(\mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathbb{N}) \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}] \rightarrow [\mathbb{N}]\\
+circle~f~[~~]~y_s &= [~~] &\\
 f xs [~~] &= [~~] &\\
-f (x:x_s) (y:y_s) &= [f x y]:(circle~f~x_s~y_s) &
+f~(x:x_s)~(y:y_s) &= [f~x~y]:(circle~f~x_s~y_s) &
 \end{flalign*}
 
 \section{$\lambda$-Calculus}
