@@ -12,6 +12,7 @@
 \usepackage{mathtools}
 \usepackage{cite}
 \usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage{ mathrsfs }
 
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
@@ -62,8 +63,8 @@ Saiba também que esse é um material \textit{open-source}, que pode ter sido al
 \clearpage
 
 \section{Teoria dos Conjuntos}
-\subsection{Os Axiomas de Zermelo-Frankel}
 
+\subsection{Os Axiomas de Zermelo-Frankel}
 \subsubsection{Extensionalidade}
 \label{sec:extensionalidade}
 Para quaisquer conjuntos $A, B$:\\
@@ -157,15 +158,65 @@ Esse axioma é garantido pois\\
 x \cup \{x\} &\ne x
 \end{align*}
 
-Com ele, somos capazes de montar o seguinte conjunto infinito:\\
-I = $\{ \emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \cdots \}$
+Com ele, somos capazes de montar os seguintes conjuntos:
+\begin{flalign*}
+I &= \{ \emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \cdots \} & ~ou \\
+I &= \{ \emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \cdots \} &
+\end{flalign*}
+
+\subsubsection{Definindo um par ordenado}
+Consideraremos primeiro a operação básica de par (ordenado). Intuitivamente, o par $(x,y)$ de dois objetos $x$ e $y$ é a ``coisa'' que tem o ``primeiro membro'' $x$ e o ``segundo membro'' $y$, e é diferente do par não-ordenado $\{x,y\}$ desde que (por exemplo) $\{0,1\} = \{1,0\}$ enquanto $(0,1) \neq (1,0)$. Assim, a primeira caracteristica de um par ordenado seria:
+\begin{align*}
+(x,y) = (x^\prime ,y^\prime) &\iff x = x^\prime ~\&~ y = y^\prime && (OP1)
+\end{align*}  
+
+Existe um segundo, provavelmente uma propriedade caracteristica dos pares menos óbvia, que torna possível definir Produtos Cartesianos: para dois conjunto $A$ e $B$:
+
+\begin{align*}
+\text{A classe } A \times B &=_\text{df} \{(x,y) \mid x \in A ~\&~ y \in B\} \text{é conjunto.} && (OP2)
+\end{align*}
+
+Então, o problema de representar a noção de ``par'' na teoria dos conjunto é que: é preciso definir uma operação $(x,y)$, tal que OP1 e OP2 respeitam os axiomas de Zermelo.
+
+A operação de par do \textbf{Kuratowski}:
+\begin{align*}
+(x, y) = \{ \{x\}, \{x, y\}\}\footnote{Como vimos anteriormente na seção~\ref{sec:separation}} && \text{Respeita OP1 e OP2}\\
+\end{align*}
+
+\begin{proof}
+(OP1) Provando a direção $\implies$\footnote{A direção oposta é muito trivial, segundo \cite{moschovakis2006notes}}, vamos distinguir dois casos.\\
+
+Se $x = y$, então $\{x,y\} = \{x, x\} = \{x\}$, o conjunto $(x,x) = \{\{x\},\{x\}\} = \{\{x\}\}$ é um singleton, consequentemente o conjunto $(x^\prime, y^\prime)$ , que se presume ser igual a ele também é um singleton, de modo que $x^\prime = y^\prime$ e $(x^\prime, y^\prime) = \{\{ x^\prime \}\}$; e desde que este último singleton seja igual a $\{\{x\}\}$, nos temos $x = x^\prime$, consequentemente, também $y = x = x^\prime = y^\prime$.
+
+Agora, se $x \neq y$, então os membros de $(x,y)$ são singletons de $\{ x\}$ e o doubleton $\{x,y\}$, e estes devem corresponder aos membros $\{x^\prime \}$ e $\{ x^\prime, y^\prime \}$ do conjunto $(x^\prime, y^\prime)$, e que nos devemos ter $\{x\} = \{x^\prime \}, \{x,y\} = \{x^\prime, y^\prime \}$, e, então, imediatamente, $x = x^\prime$ e $y = y^\prime$.
+
+(OP2) É suficiente provar que para dois conjunto $A$ e $B$, existe um conjunto $C$ tal que:
+\begin{align*}
+x \in A ~\&~ y \in B \implies \{\{x\}, \{x,y\}\} \in C
+\end{align*}
+
+Porque então:
+\begin{align*}
+A \times B = \{z \in C \mid (\exists x \in A)(\exists y \in B)[z = (x,y)\}
+\end{align*}
+
+Seguindo pelo $x$:
+\begin{align*}
+x \in A, y \in B &\implies \{x\}, \{x,y\} \subseteq  (A \cup B)\\
+				&\implies \{x\}, \{x,y\} \in \wp(A \vee B)\\
+				&\implies \{\{x\}, \{x,y\}\} \subseteq \wp(A \cup B)\\
+				&\implies \{\{x\}, \{x,y\}\} \in \wp (\wp (A \cup B))
+\end{align*}
+então nós podemos ter $C = \wp \wp (A \cup B)$.
+\end{proof}
+
+Nós agora definimos a operação $(x,y)$ que satisfaz (\textbf{OP1}) e (\textbf{OP2}), talvez o \textbf{Kuratowski}, provado anteriormente, ou talvez algum outro: não importa mais a definição escolhida, a única coisa que conta é a operação de par que satisfaça (\textbf{OP1}) e (\textbf{OP2})
+
+\begin{itemize}
+\item[-] União Disjunta: $A \uplus B = (\{0,a\} \times A) \cup (\{1,b\} \times B)$
+\end{itemize}
 
 \subsection{Relações e Funções Parciais}
-\subsubsection{Definindo um par ordenado}
-A operação de par do Kuratowski:\\
-$ (x, y) = \{ \{x\}, \{x, y\}\} $, como vimos anteriormente na seção~\ref{sec:separation}\\
-
-Provar!\footnote{Prova e mais detalhes sobre esse assunto serão posteriormente adicionados}
 
 \subsubsection{Relações}
 
@@ -174,10 +225,6 @@ Def: Sejam $A,B$ conjuntos, $R$ é uma relação \underline{entre} $A$ e $B$ se 
 Dessa forma,
 \begin{itemize}
 \item $f(a) = b \leadsto (a,b) \in f$
-\end{itemize}
-
-\begin{itemize}
-\item[-] União Disjunta: $A \uplus B = (\{0,a\} \times A) \cup (\{1,b\} \times B)$
 \end{itemize}
 
 Sendo $R$ uma relação sobre o conjunto $\mathbb{N} (R \subseteq A \times A), R$ pode ser:
@@ -229,9 +276,9 @@ Seja $x,y \in A$, e $\backsim$ uma relação de equivalência no $A$:
 \end{align*}
 
 \subsubsection{Funções parciais na ZFC}
-O conceito de funções parciais remete a ideia de uma função em que nem todos os $x$ possuem uma $f(x)$.
+O conceito de funções parciais remete a ideia de uma função em que nem todos os $x$ possuem uma $f(x)$ (Usaremos a notação $\rightharpoonup$).
 \begin{align*}
-f: \mathbb{N} \to \mathbb{N} && \text{Domínio da função}\\
+f: \mathbb{N} \rightharpoonup  \mathbb{N} && \text{Domínio da função}\\
 f(x) = \sqrt[2]{x} && x = 3 \text{ não possui uma saída bem definida nesse domínio.}
 \end{align*}
 
@@ -254,12 +301,18 @@ Seja $A$ um conjunto. O que é $|A|$?
 $\{|x| \mid x \in \epsilon \}$ é conjunto.
 \end{itemize}
 
-Aqui estaremos definindo funções cardinais fracas (\textbf{weak}). Isso porquê seria necessário provar o c2, algo extremamanete complicado agora. Portanto, podemos o resumir como:\\
-
+\subsubsection{Números Cardinais}
+Uma (fraca) \textbf{atribuição de cardinalidade} é qualquer operação definida nos conjuntos $A \mapsto |A|$ que satisfaz (c1) e (c3). Uma \textbf{atribuição de cardinal forte} também satisfaz o (c2). Iremos utilizar a definição \textbf{fraca}, que pode ser ajustada ao (c2) como:\\
 \begin{itemize}
 \item[c2.] $A =_c B \iff |A| =_c |B|$
 \end{itemize}
 
+Os \textbf{números cardinais} (relativo a uma dada atribuição de cardinalidade) são os valores:
+\begin{align*}
+\text{Card}(\kappa) \iff \kappa \in \text{Card } \iff_\text{df } (\exists A)[\kappa = |A|]
+\end{align*}
+
+Vamos definir uma especifica (provavelmente fraca) atribuição de cardinalidade e vamos definir as operações aritiméticas nos cardinais como:
 Sejam $\kappa, \lambda, \mu$ números cardinais:
 \begin{align*}
 \kappa + \lambda &\triangleq_c \kappa \uplus \lambda & \\
@@ -267,9 +320,18 @@ Sejam $\kappa, \lambda, \mu$ números cardinais:
 \kappa^\lambda &\triangleq_c (\kappa \to \lambda) &
 \end{align*}
 
-\subsection{Os Axiomas de Peano}
-\textbf{Structed set}: $(\mathbb{N}; 0; S)$, onde $0 \in \mathbb{N}$ e $S:\mathbb{N} \rightarrow \mathbb{N}$\\
+Atente ao fato que existe apenas uma escolha para $|\emptyset|$,
+\begin{align*}
+0 =_\text{df} |\emptyset| = \emptyset
+\end{align*}
 
+uma vez que apenas $|\emptyset| = \emptyset$ satisfaz $\emptyset =_c |\emptyset|$. Isso é também conveniente para o conjunto:
+\begin{align*}
+1 ~=_\text{df} |\{\emptyset\}|, ~2 ~=_\text{df} |\{0,1\}|
+\end{align*} 
+
+\subsection{Os Axiomas de Peano}
+\textbf{Structed set}: $(\mathbb{N}; 0; S)$, onde $0 \in \mathbb{N}$ e $S:\mathbb{N} \rightarrow \mathbb{N}$
 \begin{align*}
 0 &\in \mathbb{N}\\
 S: \mathbb{N} &\rightarrow \mathbb{N}\\
@@ -295,6 +357,51 @@ Então existe $f: \mathbb{N} \rightarrow E$\\
 tal que: $f(0) = a e f(S_n) = h(f(n))$.
 \end{theorem}
 
+Agora, precisamos provar que $f$ existe e é bem definida no domínio escolhido.
+
+\begin{proof}
+
+\begin{flalign*}
+\text{Sendo } f_0 &\triangleq \{0\} \to E & && f_0~:~\{\emptyset\} \to E & \\
+\text{Sendo } f_1 &\triangleq \{(0,a)\} \to E & && f_1~:~\{0,1\} \to E\\
+\text{Sendo } f_2 &\triangleq \{(0,a), (1,h(a))\} & && f_2~:~\{0,1,2\} \to E\\
+&\vdots&\\
+f &\triangleq \bigcup_i ~ f_i
+\end{flalign*}
+\begin{flalign*}
+p \in \mathscr{A} &\iff\\
+					&\text{Function}(p)\\
+					&\land \text{domain}(p)\\
+					&\land \text{image}(p)\\
+					&\land 0 \in \text{ domain}(p)\\
+					&\land p(0) = a\\
+					&\land S_n \in \text{ domain}(p) \implies (n \in \text{ domain}(p) \land p(S_n) = h(p(n)))
+\end{flalign*}
+
+Seja $f = \bigcup \mathscr{A}$\\
+
+Para confirmar que $f$ é uma função:\\
+$p_1 ~\&~ q \in \mathscr{A}$\\
+$n \in $ domain$(p)~ \cap$ domain($q) \implies p(n) = q(n)$ \\
+
+\begin{flalign*}
+BASE:~ 0 \in ~\text{domain}(p)~ &\land ~\text{domain}(p)~ \implies p(0) = q(0) & \\
+p(0) = ~&a = q(0) & && (\text{def de } \mathscr{A})\\
+H.P:~ n \in \text{domain}(p) &\land \text{ domain}(q) \implies p(n) = q(n)\\
+P.I:~ S_n \in \text{domain}(p) &\land \text{domain}(q) \implies p(S_n) = q(S_n)\\
+\text{Suponha } S_n \in \text{domain}(p) &\land \text{domain}(q):\\
+p(S_n) &= h(p(n)) & && (p \in \mathscr{A})\\
+		&= h(q(n)) & && (\text{H.I})(\text{def de } \mathscr{A})  \\
+		&= q(S_n) & && (\text{def de } \mathscr{A})\\
+\end{flalign*}
+
+Agora que domain($f) = \mathbb{N}$
+\begin{align*}
+0 \in \text{domain}(f)\\
+n \in \text{domain}(f) \implies S_n \in \text{ domain}(f)
+\end{align*}
+\end{proof}
+... Certamente para ser melhorado depois!
 
 \subsection{Os Naturais na ZFC}
 Para estabelecermos os Naturais na ZFC, temos que garantir duas coisas:
@@ -305,23 +412,24 @@ Para estabelecermos os Naturais na ZFC, temos que garantir duas coisas:
 
 Para tal, iremos precisar do Teorema da Recursão (\ref{sec:recursion}).
 
-\subsubsection{Existência de $\mathbb{N}$}
-Seja $J$ = todos os conjuntos $X$ tal que satisfaz o ZF7 (\ref{sec:infinity})\\
-$J = \{X \in \wp I \mid \emptyset \in X \land (\forall x \in X)[S \in X]\}$\\
+\subsubsection{Existência de $\mathbb{N}$} 
+O Axioma da Infinidade (\ref{sec:infinity}) garante a exitência de um conjunto $I$ tal que:
+\begin{align*}
+\emptyset &\in I\\
+(\forall n)[n \in I &\implies \{n\} \in I]
+\end{align*}
+Usando esse $I$, primeiro vamos definir uma família de conjuntos:\\
+Seja $\jmath$ = todos os conjuntos $C \subseteq I$ tal que satisfaz o ZF7 (\ref{sec:infinity})\\
+$\jmath = \{C \in \wp I \mid \emptyset \in C \land (\forall x \in C)[\lambda x.\{x\} \in C]\}$
+\begin{flalign*}
+\text{Seja } \mathbb{N} &\triangleq \bigcap \jmath &\\
+\text{Seja } 0_1 &= \emptyset&\\
+\text{Seja } S_1 &= \lambda x.\{x\}
+\end{flalign*}
 
-%RETIRAR ISSO DAQUI DEPOIS, URGENTEMENTE!
-\clearpage
+Primeiro, criamos o $\jmath$ porque o Axioma da Infinidade (\ref{sec:infinity}) não nos garante que existe apenas um $I$, mas que, certamente, existe esse $I$ definido (então, vamos considerar todos os $I$ que existem como $\jmath$). Então, definimos $\mathbb{N} \triangleq \cap \jmath$ porquê assim iremos conseguir ignorar todos os outros conjuntos $I$ dois quais nos não precisamos e iremos manter apenas o que queremos, tendo em vista que todos os $C$ terão o $\emptyset$ e mais alguma coisa (lixo\footnote{Termo não tão apropriado, mas com uma noção interessante se traçarmos um parelelo com linguagem de programação.}), e o nosso $I$ procurado terá apenas $\emptyset$. Dessa forma, o lixo foi ignorado. 
 
-\begin{multicols}{2}
-\noindent Seja $\mathbb{N} \triangleq \cap J$\\
-Seja $0_1 = \emptyset$\\
-Seja $S_1 = \lambda x.\{x\}$ \footnote{Visiste \ref{sec:lambda} para $\lambda$-Calculus e entender melhor esse ponto}\\
-
-\noindent Seja $\mathbb{N} \triangleq \cap J$\\
-Seja $0_2 = \emptyset$\\
-Seja $S_2 = \lambda x.x \cup \{x\} $ \footnote{Veja nota 1}
-\end{multicols}
-
+Para terminar a prova, é suficiente provar que $(\mathbb{N}, 0, S)$ é um sistema de Peano. Para começar, $\mathbb{N} \in \jmath$, por que $X \in \jmath \implies \emptyset \in X$ e consequentemente $\emptyset \in \bigcap = \mathbb{N}$.
 Encaixando com os Axiomas de Peano:
 \begin{enumerate}
 \item $(\forall x \in J)[\emptyset \in X]$, então $\emptyset \in \cap J$ e $\emptyset \in \mathbb{N}$
@@ -337,7 +445,7 @@ $\exists p : x = \{p\}$\\
 --> Mesmo que $n \in X$ e $x \geq \mathbb{N}$
 \end{enumerate}
 
-Basicamente, podemos descrever $\mathbb{N}$ de duas maneiras, agora:
+Basicamente, podemos descrever $\mathbb{N}$ de duas maneiras agora (dependendo de qual das duas versões do Axioma da Infinidade (\ref{sec:infinity}) você resolveu usar nessa etapa):
 \begin{multicols}{2}
 \noindent 0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
 1 \hspace{4bp} $\{\emptyset\} = \{0\}$\\
