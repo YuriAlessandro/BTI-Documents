@@ -108,13 +108,13 @@ para cada P(x) estamos formando um novo axioma.
 \subsubsection{Powerset $\wp$}
 Para cada conjunto $a$, existe um conjunto $b$, onde os elementos de $b$ são subconjuntos de $a$.
 \begin{center}
-$\forall a \exists p \forall w ( w \in p ~ \iff ~ \forall x (x \in a \implies x \in b))$
+$\forall a \exists p \forall b ( b \in p ~ \iff ~ \forall x (x \in a \implies x \in b))$
 \end{center}
 
 Esse é o conjunto $\wp$(a).
 
 Aqui $x \in a$ é uma abreviação de $(\forall t)[t \in x \implies t \in a]$. O Axioma da Extensionalidade (\ref{sec:extensionalidade}) implica que para cada a, apenas um conjunto b pode satisfazer a defininção do Powerset; Nós podemos chamar \textbf{Conjunto Potência} de a e denotá-lo como:\\
-$\wp(a) \triangleq \{x \mid Set(x) \& x \in a \}$\\
+$\wp(a) \triangleq \{x \mid Set(x) \& x \subseteq a \}$\\
 
 Algumas propriedades interesantes:\\
 $\wp$($\emptyset$) = $\{ \emptyset \}$ \\
