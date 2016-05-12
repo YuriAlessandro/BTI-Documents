@@ -586,7 +586,7 @@ f xs [~~] &= [~~] &\\
 f~(x:x_s)~(y:y_s) &= [f~x~y]:(circle~f~x_s~y_s) &
 \end{flalign*}
 
-\section{$\lambda$-Calculus}
+\section{$\lambda$-Calculus \cite{wikilambda}}
 \label{sec:lambda}
 Tomando como base o conteúdo visto em \textbf{Lambda-calculus and combinators}\cite{book:111321} e \textbf{Denotational semantics}\cite{stoy1977denotational}, passamos para a notação de $\lambda$ dando uma sintaxe formal e regras de tranformação sintatíca (conversão). 
 
@@ -623,11 +623,20 @@ Redução $\beta$ é a ideia de aplicar uma função. Por exemplo, se temos $f(x
 Eta-conversão expressa a ideia de extensionalidade, que neste contexto é que duas funções são as mesmas se e somente se eles dão o mesmo resultado para todos os argumentos.\footnote{Sujeito a severas mudanças no futuro. Visite \ref{sec:colaboracao} para saber mais sobre.}
 
 \subsection{Booleanos naturais no $\Lambda$}
+O $\lambda$-Calculus pode ser usado para modelar valores booleanos, aritmética, estruturas de dados e recursividade. Vamos focar agora em como podemos determinar operadores booleanos em $\lambda$-Calculus:
 \begin{align*}
-\lambda y.x = \lambda x.(\lambda y.x) &\coloneqq true \coloneqq fst\\
-\lambda x.y = \lambda x.(\lambda y.y) &\coloneqq false \coloneqq snd
+\lambda x.(\lambda y.x) &\coloneqq true \coloneqq fst\\
+\lambda x.(\lambda y.y) &\coloneqq false \coloneqq snd
 \end{align*}
-\subsection{Combinadores I, K, B, S \cite{book:111321}}
+
+\textbf{Exercicio:}  Ache $\lambda$-Termos que se comportem como o: 
+\begin{itemize}
+\item[-] ``not''
+\item[-] ``or''
+\item[-] ``and''
+\end{itemize}
+
+\subsection{Combinadores I, K, B, S \cite{book:111321} e \cite{stenlund2012combinators}}
 O sistema de combinadores foi criado para fazer o mesmo trabalho que os sistemas de $\lambda$-Calculus, mas sem o uso de variáveis ligadas. Na verdade, as irritantes complicações técnicas envolvida na substituição e na $\alpha$-conversão vão ser evitadas completamentes a partir daqui. Entretanto, para essa técnica avançada no teremos que sacrificar a clareza intuitiva da notação $\lambda$.
 
 Para motivar combinadores, considere a lei da comutatividade da adição em aritmética, que diz:
@@ -656,24 +665,26 @@ Assuma que é dado uma sequência infinita de expressões $v_0, v_00, v_000, \cd
 \end{itemize}
 
 \begin{flalign*}
-K &= \lambda x \lambda y.x & &&\text{Retorna uma contante}
-B &= \lambda x \lambda y . \lambda z . x (yz) & &&\text{``Composition''}\\
-I &= \lambda x.x & &&\text{Retorna seu argumento)}\\
-S &= \lambda x \lambda y . \lambda z. \lambda xz(yz) & &&\text{Operador de substituição.}
+K &= \lambda x \lambda y.x & &&\text{Retorna uma contante}\\
+B &= \lambda x \lambda y \lambda z . x (yz) & &&\text{``Composition''}\\
+I &= \lambda x.x & &&\text{Retorna seu argumento}\\
+S &= \lambda x \lambda y  \lambda z. xz(yz) & &&\text{Operador de substituição.}
 \end{flalign*}
-
-Exercicio: Mostre que
-\begin{itemize}
-\item[-] $S(KS)K \to B$
-\item[-] $SKK \to I$
-\end{itemize}
-
-Ache $\lambda$-Termos ``behavem'' como o 
-\begin{itemize}
-\item[-] ``not''
-\item[-] ``or''
-\item[-] ``and''
-\end{itemize}
+\textbf{Exercicio}: Mostre que\\
+\textbf{-	 $S(KS)K \to B$}:
+\begin{flalign*}
+(SKK)x &= Kx Kx & && \text{Pela definição de } S\\
+		&= x & &&\text{Pela definição de } K \\
+		&= I & &&\text{Pela definião de } I
+\end{flalign*}
+\textbf{- $S(KS)K \to B$}:
+\begin{flalign*}
+(S(KS)K)xyz &= ((KSx) Kx)yz & &&\text{Pela definição de } S\\
+			&= (S Kx)yz & &&\text{ Pela definição de } K\\
+			&= (Kxy)(yz) & &&\text{Pela definição de } S\\
+			&= x(yz) & &&\text{ Pela definição de } K\\
+			&= B & &&\text{ Pela definição de} B.
+\end{flalign*}
 
 \section{Política de Colaboração}
 \label{sec:colaboracao}
