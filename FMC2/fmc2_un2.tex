@@ -178,9 +178,9 @@ Existe um segundo, provavelmente uma propriedade caracteristica dos pares menos 
 
 Então, o problema de representar a noção de ``par'' na teoria dos conjunto é que: é preciso definir uma operação $(x,y)$, tal que OP1 e OP2 respeitam os axiomas de Zermelo.
 
-A operação de par do \textbf{Kuratowski}:
+A operação de par do \textbf{Kuratowski}\footnote{Como vimos anteriormente, apenas exemplificando como um Axioma da Separação poderia ser utilizado, na seção~\ref{sec:separation}.}:
 \begin{align*}
-(x, y) = \{ \{x\}, \{x, y\}\}\footnote{Como vimos anteriormente na seção~\ref{sec:separation}} && \text{Respeita OP1 e OP2}\\
+(x, y) = \{ \{x\}, \{x, y\}\} && \text{Respeita OP1 e OP2}\\
 \end{align*}
 
 \begin{proof}
@@ -211,6 +211,8 @@ então nós podemos ter $C = \wp \wp (A \cup B)$.
 \end{proof}
 
 Nós agora definimos a operação $(x,y)$ que satisfaz (\textbf{OP1}) e (\textbf{OP2}), talvez o \textbf{Kuratowski}, provado anteriormente, ou talvez algum outro: não importa mais a definição escolhida, a única coisa que conta é a operação de par que satisfaça (\textbf{OP1}) e (\textbf{OP2})
+
+\subsubsection{União Disjunta}
 
 \begin{itemize}
 \item[-] União Disjunta: $A \uplus B = (\{0,a\} \times A) \cup (\{1,b\} \times B)$
@@ -586,6 +588,8 @@ f~(x:x_s)~(y:y_s) &= [f~x~y]:(circle~f~x_s~y_s) &
 
 \section{$\lambda$-Calculus}
 \label{sec:lambda}
+Tomando como base o conteúdo visto em \textbf{Lambda-calculus and combinators}\cite{book:111321} e \textbf{Denotational semantics}\cite{stoy1977denotational}, passamos para a notação de $\lambda$ dando uma sintaxe formal e regras de tranformação sintatíca (conversão). 
+
 \subsection{O conjunto de $\lambda$-termos}
 Sendo $\Lambda = \lambda$-termos;
 \begin{flalign*}
@@ -623,14 +627,53 @@ Eta-conversão expressa a ideia de extensionalidade, que neste contexto é que d
 \lambda y.x = \lambda x.(\lambda y.x) &\coloneqq true \coloneqq fst\\
 \lambda x.y = \lambda x.(\lambda y.y) &\coloneqq false \coloneqq snd
 \end{align*}
-\subsection{Combinators I, K, B, S}
-Combinadores\footnote{A melhorar bruscamente}
+\subsection{Combinadores I, K, B, S \cite{book:111321}}
+O sistema de combinadores foi criado para fazer o mesmo trabalho que os sistemas de $\lambda$-Calculus, mas sem o uso de variáveis ligadas. Na verdade, as irritantes complicações técnicas envolvida na substituição e na $\alpha$-conversão vão ser evitadas completamentes a partir daqui. Entretanto, para essa técnica avançada no teremos que sacrificar a clareza intuitiva da notação $\lambda$.
+
+Para motivar combinadores, considere a lei da comutatividade da adição em aritmética, que diz:
+\begin{align*}
+(\forall x,y)~x+y = y + x
+\end{align*}  
+A expressão acima contém variáveis ligadas ``$x$'' e ``$y$''. Mas elas podem ser removidas, como a seguir. Nos vamos primeiro definir um operador de adição $A$ por:
+\begin{align*}
+A(x,y) = x + y && (\text{para todo } x,y)
+\end{align*}
+e vamos introduzir um operador $C$ definido po:
+\begin{align*}
+(C(f))(x,y) = f(y,x) && (\text{para todo } f,x,y)
+\end{align*}
+Então a lei da comutatividade se torna simples
+\begin{align*}
+A = C(A)
+\end{align*}
+
+O operador $C$ pode ser chamado de \textbf{combinador}.
+
+Assuma que é dado uma sequência infinita de expressões $v_0, v_00, v_000, \cdots$ chamadas ``variáveis'', e um finita ou infinita sequencia de expressões chamada ``constantes atômicas'', incluindo três chamadas ``combinadores básicos'': \textbf{I}, \textbf{K} e \textbf{S} (Se \textbf{I}, \textbf{K} e \textbf{S} são as únicas constantes atômicas o sistema será chamado de puro, caso contrário, será aplicado). O conjunto de expressões chamado Termos Lambda é definido por indução como:
+\begin{itemize}
+\item[(a)] todas as variáveis e constantes atômicas, incluindo \textbf{I}, \textbf{K} e \textbf{S} são Termos Lambda
+\item[(b)] se $X$ e $Y$ são Termos Lambda, então é assim $(X,Y)$
+\end{itemize}
 
 \begin{flalign*}
-I &= \lambda x.x &\\
+K &= \lambda x \lambda y.x & &&\text{Retorna uma contante}
 B &= \lambda x \lambda y . \lambda z . x (yz) & &&\text{``Composition''}\\
-S &= \lambda x \lambda y . \lambda z. \lambda xz(yz) &
+I &= \lambda x.x & &&\text{Retorna seu argumento)}\\
+S &= \lambda x \lambda y . \lambda z. \lambda xz(yz) & &&\text{Operador de substituição.}
 \end{flalign*}
+
+Exercicio: Mostre que
+\begin{itemize}
+\item[-] $S(KS)K \to B$
+\item[-] $SKK \to I$
+\end{itemize}
+
+Ache $\lambda$-Termos ``behavem'' como o 
+\begin{itemize}
+\item[-] ``not''
+\item[-] ``or''
+\item[-] ``and''
+\end{itemize}
 
 \section{Política de Colaboração}
 \label{sec:colaboracao}
