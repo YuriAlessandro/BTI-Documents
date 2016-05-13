@@ -640,12 +640,26 @@ Isso quer dizer que um número natural $n$ é representado pelo numeral de Churc
 \subsubsection{Cálculo com os numerais de Church}
 No cálculo lambda, as funções numéricas são representáveis por funções correspondentes nos numerais de Church.
 
-A função \text{succ}, que recebe um número $n$ e retorna $n+1$ pela adição de outra aplicação de $f$.
+Para começar, vamos definir a função \text{succ}, que recebe um número $n$ e retorna $n+1$ pela adição de outra aplicação de $f$.
 \begin{flalign*}
-SUCC~:=~\lambda n. \lambda f. \lambda x. f (n f x) &
+SUCC~&:=~\lambda n. \lambda f. \lambda x. f (n~f~x) &
+\end{flalign*}
+$(n~f~x)$ quer dizer que $f$ será aplicada $n$ vezes em $x$. Por exemplo: 
+\begin{flalign*}
+3 \text{ sqrt } 7 &= \text{ sqrt(sqrt(sqrt(7)))} &
 \end{flalign*}
 
+Tendo em vista isso, queremos continuar aumentando nosso leque de operações aritméticas. Vamos com a soma. Sabemos que, por exemplo, fizermos $2 + 3$, deveremos somar 3 vezes o valor 2 à 1, de modo que $2+1+1+1 = 5$. Podemos então utilizar nosso função de SUCC, já definida, para fazer isso, e realizarmos m vezes SUCC de um valor n:
 
+\begin{flalign*}
+PLUS~&:=~\lambda m. \lambda n.m \text{ SUCC } n 0 &
+\end{flalign*}
+Isso quer dizer que estamos aplicando SUCC $m$ vezes em $n$. Agora ficou fácil continuar ampliando nossa aritmética:\\
+\textbf{Exercicio:}
+\begin{flalign*}
+- MULT~&:=~ &\\
+- POW~&:=~ &
+\end{flalign*}
 
 \subsection{Booleanos naturais no $\Lambda$}
 O $\lambda$-Calculus pode ser usado para modelar valores booleanos, aritmética, estruturas de dados e recursividade. Vamos focar agora em como podemos determinar operadores booleanos em $\lambda$-Calculus:
@@ -653,6 +667,23 @@ O $\lambda$-Calculus pode ser usado para modelar valores booleanos, aritmética,
 \lambda x.(\lambda y.x) &\coloneqq true \coloneqq fst\\
 \lambda x.(\lambda y.y) &\coloneqq false \coloneqq snd
 \end{align*}
+
+Um importante conceito no booleanos no $\lambda$-Calculus é do $iftheelse$. Ele pode ser explicado traçando um paralelo com operador ternário em linguagem de programação, no caso de $b ? x : y$ para linguagem C. Em suma, ele irá testar o booleano $b$ e irá para $x$ se $b$ TRUE, ou para $y$, caso contrário. Assim, ``if $b$ then $x$ else $y$''.
+
+Com ele, fica mais fácil definirmos outros operadores booleanos no $\lambda$-Calculus. Antes, é importante nos lembrarmos de algumas propriedas interessantes:
+\begin{flalign*}
+a &\wedge b =
+\begin{cases}
+b, \text{ se } a = \text{ TRUE}\\
+a, \text{ se } a = \text{ FALSE}
+\end{cases}&
+a \vee b =
+\begin{cases}
+\text{TRUE}, \text{ se } a = \text{ TRUE}\\
+b, \text{ se } a = \text{ FALSE}
+\end{cases}&
+\end{flalign*}
+Sabendo disso...
 
 \textbf{Exercicio:}  Ache $\lambda$-Termos que se comportem como o: 
 \begin{itemize}
@@ -725,6 +756,7 @@ Como base foram utilizados os livros ``Notes on Set Theory''\cite{moschovakis200
 \item \href{http://www.tsouanas.org/}{Thanos Tsouanas}
 \item \href{https://github.com/eltonvs}{Elton Viana}
 \item Gilney Junior
+\item João Victor
 \end{itemize}
 \clearpage
 \bibliographystyle{plain}
