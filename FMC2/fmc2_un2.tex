@@ -447,22 +447,22 @@ $\exists p : x = \{p\}$\\
 --> Mesmo que $n \in X$ e $x \geq \mathbb{N}$
 \end{enumerate}
 
-Basicamente, podemos descrever $\mathbb{N}$ de duas maneiras agora (dependendo de qual das duas versões do Axioma da Infinidade (\ref{sec:infinity}) você resolveu usar nessa etapa):
-\begin{multicols}{2}
-\noindent 0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
+Basicamente, podemos descrever $\mathbb{N}$ de duas maneiras agora (dependendo de qual das duas versões do Axioma da Infinidade (\ref{sec:infinity}) você resolveu usar nessa etapa):\\	
+0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
 1 \hspace{4bp} $\{\emptyset\} = \{0\}$\\
 2 \hspace{4bp} $\{\{\emptyset\}\} = \{1\}$\\
 3 \hspace{4bp} $\{\{\{\emptyset\}\}\} = \{2\}\\$
 $\vdots$\\
 \hspace{5bp} S = $\lambda$x.$\{x\}$ \\
-
-\noindent 0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
+ou\\
+0 \hspace{4bp} $\emptyset$ = $\emptyset$\\
 1 \hspace{4bp} $\{\emptyset\} = \{0\}$\\
 2 \hspace{4bp} $\{\emptyset, \{\emptyset\}\} = \{0,1\}$\\
 3 \hspace{4bp} $\{\emptyset, \{\emptyset\}\, \{\{\emptyset\}\}\}$\\
 $\vdots$\\
 \hspace{5bp} S = $\lambda x.x \cup \{x\} $
-\end{multicols}
+
+
 
 \subsubsection{Singularidade de $\mathbb{N}$}
 ``$\mathbb{N}$ is unique up to isomorphism:''
@@ -622,6 +622,31 @@ Redução $\beta$ é a ideia de aplicar uma função. Por exemplo, se temos $f(x
 \subsubsection{Redução $\eta$}
 Eta-conversão expressa a ideia de extensionalidade, que neste contexto é que duas funções são as mesmas se e somente se eles dão o mesmo resultado para todos os argumentos.\footnote{Sujeito a severas mudanças no futuro. Visite \ref{sec:colaboracao} para saber mais sobre.}
 
+\subsection{Aritmética em $\lambda$-Calculus}
+Utilizando os numerais de \textbf{Church}\cite{wikilambda} \cite{wikichurch}, os números naturais podem ser definidos da seguinte maneira:
+\begin{flalign*}
+0~&:= \lambda f. \lambda x.~x & \\
+1~&:= \lambda f. \lambda x.~f~x & \\
+2~&:= \lambda f. \lambda x.~f~(f~x) &\\
+3~&:= \lambda f. \lambda x.~f~(f~(f~x)) &\\
+\vdots &\\
+n~&:= \lambda f. \lambda x.~f^n~x &
+\end{flalign*}
+Isso quer dizer que um número natural $n$ é representado pelo numeral de Church $n$, que tem a propriedade que, para quaisquer termos $\lambda$ $F$ e $X$,\\
+\begin{flalign*}
+ n~F~X =_\beta ~F^n~x &
+\end{flalign*}
+
+\subsubsection{Cálculo com os numerais de Church}
+No cálculo lambda, as funções numéricas são representáveis por funções correspondentes nos numerais de Church.
+
+A função \text{succ}, que recebe um número $n$ e retorna $n+1$ pela adição de outra aplicação de $f$.
+\begin{flalign*}
+SUCC~:=~\lambda n. \lambda f. \lambda x. f (n f x) &
+\end{flalign*}
+
+
+
 \subsection{Booleanos naturais no $\Lambda$}
 O $\lambda$-Calculus pode ser usado para modelar valores booleanos, aritmética, estruturas de dados e recursividade. Vamos focar agora em como podemos determinar operadores booleanos em $\lambda$-Calculus:
 \begin{align*}
@@ -665,7 +690,7 @@ Assuma que é dado uma sequência infinita de expressões $v_0, v_00, v_000, \cd
 \end{itemize}
 
 \begin{flalign*}
-K &= \lambda x \lambda y.x & &&\text{Retorna uma contante}\\
+K &= \lambda x \lambda y.x & &&\text{Retorna uma função contante}\\
 B &= \lambda x \lambda y \lambda z . x (yz) & &&\text{``Composition''}\\
 I &= \lambda x.x & &&\text{Retorna seu argumento}\\
 S &= \lambda x \lambda y  \lambda z. xz(yz) & &&\text{Operador de substituição.}
