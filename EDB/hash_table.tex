@@ -77,7 +77,7 @@ int hash( int key, int tableSz ){
 
 Agora, suponha que, usando a função descrita acima, iremos adicionar a chave 4 para uma tabela com tamanho 1000. Pela nossa função, a posição onde essa chave se encaixaria era a posição 4, dado que $4~\%~999 = 4$. Agora, suponha que após varias inserções de várias outras chaves (10, 1000, 2, 321321, 14243, ...) queremos adicionar a chave 1003. Pela nossa função, ela ocuparia a mesma posição que o elemento 4, pois $1003~\%~999 = 4$. Quando isso ocorre, dizemos que houve uma \textbf{colisão}
 
-Uma função de hash perfeita, portanto, seria uma capaz de que para qualquer duas chaves diferentes, seriam geradas duas posições sempre diferentes, e que nunca houvessem colisões (nosso exemplo de \textit{modular} não é um bom exemplo disso). Como não podemos evitar as colisões em 100\%, 
+Uma função de hash perfeita, portanto, seria uma capaz de que para qualquer duas chaves diferentes, seriam geradas duas posições sempre diferentes, e que nunca houvessem colisões (nosso exemplo de \textit{modular} não é um bom exemplo disso).
 
 \subsection{Resolvendo colisões}
 Podemos tentar resolver as colisões de várias maneiras. Uma maneira trivial, por exemplo, seria buscar, a partir da ``posição original'' da chave, o próximo espaço vazio do vetor e colocar a informação lá. Isso é nem um pouco prático, pois assim a busca ficará ruim, já que a informação não estará na posição de sua determinada chave.
