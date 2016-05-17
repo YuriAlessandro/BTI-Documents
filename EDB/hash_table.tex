@@ -67,7 +67,7 @@ Ela é a responsável por encontrar, dada uma chave, uma posição de armazename
 \end{figure}
 
 \lstset{language=C++, caption={Uma rápida demonstração de como seria uma função de hash em C/C++}}
-\begin{lstlisting}[frame=single, captionpos=b]
+\begin{lstlisting}[frame=single, captionpos=b, numbers=left]
 int hash( int key, int tableSz ){
 	int hashval;
 	hashval = key % (tablesz-1);
