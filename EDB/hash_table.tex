@@ -1,0 +1,121 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+colorlinks,
+linkcolor={blue!50!green},
+citecolor={blue!50!black},
+urlcolor={blue!80!black}
+}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage{indentfirst}
+\usepackage{url}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+{\large Universidade Federal do Rio Grande do Norte}\\[0.2cm]
+{\large Instituto Metrópole Digital}\\[0.2cm]
+{\large Bacharelado em Tecnologia da Informação}\\[0.2cm]
+{\large Estrutura de Dados Básica}\\[5.1cm]
+{\bf \huge Tabela Hash}\\[5.1cm]
+\end{center}
+{\large Autor: Yuri Alessandro Martins}\\[0.7cm]
+\begin{center}
+{\large \today}\\
+{\large Natal/RN}\\[0.2cm]
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Introdução}
+
+Uma tabela de dispersão, ou \textbf{Hash Table}, é uma TAD que funciona como um \textit{dicionário}, contendo uma \textbf{chave} e uma \textbf{informação} para cada objeto armazenado. Cada chave é mapeada em um determinado ponto da tabela. 
+
+Toda tabela possui um \textbf{Universo de Chaves}, que nada mais é do que todas as chaves possíveis de serem utilizadas.  Obviamente não iremos criar uma tabela com o tamanho do Universo de Chaves, até porque a quantidade que será realmente usada deve ser bem menor\footnote{``Deve ser bem menor'' no sentido de que provavelmente não iremos utilizar tantas chaves ao ponto de utilizarmos todo nosso Universo de Chaves}. Então nossa tabela pode ser um vetor de tamanho \textit{n}, e as chaves poderão ser armazenadas entre as posições 0 e n-1. 
+
+A determinação de em qual posição cada chave irá ficar é feita pela técnica de hash (\ref{sec:hash}). A ideia é que cada chave consiga ocupar uma posição única dentro da tabela, o que claramente podemos constatar que é muito dificil em termos de grande volume de dados a serem armazenados.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{th_1}
+\caption{Exemplo de organização de uma tabela de dispersão para ``RG'' e nome de uma pessoa. Imagem retirada de \textit{Data Structure and Algorithms in C++}\cite{Weiss:1998:DSA:521187}}
+\label{hash1}
+\end{figure}
+
+\section{Função de Hashing}
+\label{sec:hash}
+
+Também tida como \textbf{função de espelhamento}, a função hash é a parte mais importante dessa técnica. Caso não seja bem escolhida, a implementação pode ter um péssimo desempenho.
+
+Ela é a responsável por encontrar, dada uma chave, uma posição de armazenamento adequada no nosso vetor (tabela). É importante que a função seja capaz de \textbf{retornar uma mesma chave para uma mesma entrada, sempre} (um exemplo de função hash é a \textit{modular}, que determina a posição como $chave~\%~n-1$). 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{th_2}
+\caption{Rápida demonstração de como função de hash funcionaria. Imagem retirada de \textit{Wikipedia}\cite{wiki:hash}}
+\label{hash2}
+\end{figure}
+
+\lstset{language=C++, caption={Uma rápida demonstração de como seria uma função de hash em C/C++}}
+\begin{lstlisting}[frame=single, captionpos=b]
+int hash( int key, int tableSz ){
+	int hashval;
+	hashval = key % (tablesz-1);
+	return hashval;
+}
+\end{lstlisting}
+
+Agora, suponha que, usando a função descrita acima, iremos adicionar a chave 4 para uma tabela com tamanho 1000. Pela nossa função, a posição onde essa chave se encaixaria era a posição 4, dado que $4~\%~999 = 4$. Agora, suponha que após varias inserções de várias outras chaves (10, 1000, 2, 321321, 14243, ...) queremos adicionar a chave 1003. Pela nossa função, ela ocuparia a mesma posição que o elemento 4, pois $1003~\%~999 = 4$. Quando isso ocorre, dizemos que houve uma \textbf{colisão}
+
+Uma função de hash perfeita, portanto, seria uma capaz de que para qualquer duas chaves diferentes, seriam geradas duas posições sempre diferentes, e que nunca houvessem colisões (nosso exemplo de \textit{modular} não é um bom exemplo disso). Como não podemos evitar as colisões em 100\%, 
+
+\subsection{Resolvendo colisões}
+Podemos tentar resolver as colisões de várias maneiras. Uma maneira trivial, por exemplo, seria buscar, a partir da ``posição original'' da chave, o próximo espaço vazio do vetor e colocar a informação lá. Isso é nem um pouco prático, pois assim a busca ficará ruim, já que a informação não estará na posição de sua determinada chave.
+
+Uma outra maneira pode ser relacionar a lista encadeada com uma outra TAD, a \textbf{lista encadeada}.
+
+\section{Relacionando com outras TADs}
+Também conhecido como \textbf{separate chaining}, essa técnica permite utilizarmos a TAD \textbf{lista encadeada} para tentar resolver o problema das colisões (tendo em vista que quanto menos colisão, mais eficiente é nossa implementação). Dessa forma, basicamente, ao invés de armazenamos diretamente a informação em uma posição do nosso vetor (tabela), armazenamos uma lista encadeada.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.3]{th_3}
+\caption{Exemplo de organização de uma tabela de dispersão utilizando lista encadeada. Imagem retirada de \textit{Data Structure and Algorithms in C++}\cite{Weiss:1998:DSA:521187}}
+\label{hash3}
+\end{figure}
+
+Assim, quando a colisão ocorre, podemos criar um novo nó e ir ``armazenando várias chaves em uma mesma posição''. Note que todas as chaves congruentes estarão na mesma lista encadeada, que poderá ser percorrida linearmente para achar a informação de uma chave.
+
+\section{SHA-1 \cite{wiki:sha}}
+
+SHA-1 é uma função de dispersão (função hash) criada pela Agência Nacional de Segurança (\textbf{NSA}) dos Estados Unidos. Esse algoritmo é amplamente utilizado na área de criptografia, sendo publicado em 1995 (sucessor do SHA, publicado em 1995, que não foi muito adotado).
+
+No caso dessa aplicação, como ela foi criada para o âmbito da criptografia, uma vez que a chave passa pela função de hash (ou seja, é criptografada), o valor gerado nunca poderá voltar a ser a chave original. Isso é conhecido como ``Algoritmos de criptografia \textit{One Way}''. Ele é usado numa grande variedade de aplicações e protocolos de segurança, como por exemplo TLS, SSL, SSH, PGP, etc.
+
+Como funciona como uma Tabela Hash, ele também possui a propriedade de sempre retornar uma mesmo valor hash\footnote{Basicamente, o que a gente tratava como ``posição'' onde a chave seria inserida.} para uma mesma chave de entrada.
+
+\section{Conclusão}
+
+Ao utilizarmos a TAD de \textbf{tabela hash}, estamos armazenando uma coleção de \textbf{objetos} com \textbf{chaves associadas} a cada um (Imagem \ref{hash1}). Diferentemente de outras TADs, o local onde esse objeto será armazenado dentro da nossa tabela (basicamente, um vetor de tamanho $n$) é determinado por meio de uma \textbf{função de hash} (Imagem \ref{hash2}), que deverá (i) as chaves uniformemente pelo vetor (tabela), (ii) garantir que duas chaves iguais irão armazenar uma informação numa mesma posição e (iii) evitar o máximo que possível as \textbf{colisões}, que ocorre quando duas chaves diferente acabam tendo que ocupar a mesma posição na tabela.
+
+Vimos, portanto, que uma maneira de acabar com as colisões é associando a TAD de tabela hash com a tad de \textbf{lista encadeada}, fazendo como que várias chaves sejam agrupadas congruentemente numa mesma posição da tabela (Imagem \ref{hash3}).
+
+A TAD de Hash Table tem a vantagem de permitir que a \textbf{busca de elementos} seja feita de maneira bastante \textbf{rápida}, pois para recuperar a informação tudo que precisamos fazer é passar a chave pela função de hash e dessa forma teremos a posição em que a informação se encontra, não sendo necessário percorrer todo o vetor até encontrar a informação, como num array. Todavia, isso faz com que a complexidade do programa esteja diretamente ligada a sua função de hash (quanto melhor ela for, melhor seu programa será).
+
+Durante as várias inserções, a tabela vai perdendo sua ordem relativa, ficando ``desorganizada''. Isso faz com que não seja possível criar funções de ``sucessor'', ``antecessor'', entre outros, o que pode ser considerado uma desvantagem dessa TAD.
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{th_refs}
+
+\end{document}
