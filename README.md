@@ -10,7 +10,7 @@ Você é capaz de compilar os arquivos .tex e gerar um .pdf usando (Linux):
     $ pdflatex <nome>.tex
     
   
-Caso você não possua um Latex instalado em sua máquina, [clique aqui](http://ubuntued.info/como-instalar-o-latex-no-ubuntu) (Distribuição 
+Caso você não possua um Latex instalado em sua máquina, [clique aqui](http://ubuntued.info/como-instalar-o-latex-no-ubuntu)
 
 # Contribua #
 
