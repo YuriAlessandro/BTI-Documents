@@ -39,9 +39,9 @@ urlcolor={blue!80!black}
 
 \section{Introdução}
 
-Uma tabela de dispersão, ou \textbf{Hash Table}, é uma TAD que funciona como um \textit{dicionário}, contendo uma \textbf{chave} e uma \textbf{informação} para cada objeto armazenado. Cada chave é mapeada em um determinado ponto da tabela. 
+Uma tabela de dispersão, ou \textbf{Hash Table}, é uma TAD que funciona como um \textit{dicionário}, contendo uma \textbf{chave} e uma \textbf{informação} para cada objeto armazenado. Cada chave é mapeada em um determinado ponto da tabela.
 
-Toda tabela possui um \textbf{Universo de Chaves}, que nada mais é do que todas as chaves possíveis de serem utilizadas.  Obviamente não iremos criar uma tabela com o tamanho do Universo de Chaves, até porque a quantidade que será realmente usada deve ser bem menor\footnote{``Deve ser bem menor'' no sentido de que provavelmente não iremos utilizar tantas chaves ao ponto de utilizarmos todo nosso Universo de Chaves}. Então nossa tabela pode ser um vetor de tamanho \textit{n}, e as chaves poderão ser armazenadas entre as posições 0 e n-1. 
+Toda tabela possui um \textbf{Universo de Chaves}, que nada mais é do que todas as chaves possíveis de serem utilizadas.  Obviamente não iremos criar uma tabela com o tamanho do Universo de Chaves, até porque a quantidade que será realmente usada deve ser bem menor\footnote{``Deve ser bem menor'' no sentido de que provavelmente não iremos utilizar tantas chaves ao ponto de utilizarmos todo nosso Universo de Chaves}. Então nossa tabela pode ser um vetor de tamanho \textit{n}, e as chaves poderão ser armazenadas entre as posições 0 e n-1.
 
 A determinação de em qual posição cada chave irá ficar é feita pela técnica de hash (\ref{sec:hash}). A ideia é que cada chave consiga ocupar uma posição única dentro da tabela, o que claramente podemos constatar que é muito dificil em termos de grande volume de dados a serem armazenados.
 
@@ -57,7 +57,7 @@ A determinação de em qual posição cada chave irá ficar é feita pela técni
 
 Também tida como \textbf{função de espelhamento}, a função hash é a parte mais importante dessa técnica. Caso não seja bem escolhida, a implementação pode ter um péssimo desempenho.
 
-Ela é a responsável por encontrar, dada uma chave, uma posição de armazenamento adequada no nosso vetor (tabela). É importante que a função seja capaz de \textbf{retornar uma mesma chave para uma mesma entrada, sempre} (um exemplo de função hash é a \textit{modular}, que determina a posição como $chave~\%~n-1$). 
+Ela é a responsável por encontrar, dada uma chave, uma posição de armazenamento adequada no nosso vetor (tabela). É importante que a função seja capaz de \textbf{retornar uma mesma chave para uma mesma entrada, sempre} (um exemplo de função hash é a \textit{modular}, que determina a posição como $chave~\%~n-1$).
 
 \begin{figure}[!h]
 \centering
