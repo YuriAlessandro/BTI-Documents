@@ -10,9 +10,9 @@ Essa é a organização dos documentos:
 ```
 ├── BTI-Documents/
 │   ├── [EDB] - Estruturas de Dados Básicas
-│	│	├── hash_table.pdf - Explicações sobre a TAD de Tabela de Dispersão
-│	│	├── hash_table.tex - Arquivo fonte do documento hash_table.pdf
-│	├── [FMC2] - Fundamentos Matemáticos da Computação 2
+│   │   ├── hash_table.pdf - Explicações sobre a TAD de Tabela de Dispersão
+│   │   ├── hash_table.tex - Arquivo fonte do documento hash_table.pdf
+│   ├── [FMC2] - Fundamentos Matemáticos da Computação 2
 │   │   ├── fmc2_un2.pdf - Teoria Axiomática dos Conjuntos e Lambda-Calculus
 │   │   ├── fmc2_un2.tex - Arquivo fonte do documento fmc2_un2.tex
 │   ├── [IOAC] - Introdução a Arquitetura e Organização de Computadores
