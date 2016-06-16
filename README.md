@@ -7,6 +7,17 @@ Um compilado com alguns documentos que realizam um estudo dirigido de algumas
 O objetivo aqui é compartilhar conhecimento e informação para as outras pessoas,
 e buscar direcionar o estudo por meio de um "documento-resumo".
 
+## Sumário #
+
+* [Documentos](#documentos)
+  * [Tabela de Dispersão](#tabela-de-dispersão---hash_tablepdf)
+  * [Teoria Axiomatica dos Conjuntos](#teoria-axiomatica-dos-conjuntos---fmc2_un2pdf)
+  * [Dispositivos E/S e Sistema Operacional](#dispositivos-es-e-sistema-operacional---ioac_un3pdf)
+  * [Modelos Probabilisticos](#modelos-probabilisticos---probpdf)
+* [LaTeX](#latex)
+  * [Como compilar os arquivos .tex](#como-compilar-os-arquivos-tex)
+* [Contribua](#contribua)
+
 ## Documentos #
 
 Essa é a organização dos documentos:
@@ -56,7 +67,7 @@ diagramação de texto muito utilizada em textos cientifícos e matemáticos.
 A maioria dos arquivos fontes estão disponíveis para edições e melhorias por
 outros usuários.
 
-## Como compilar os arquivos .tex #
+### Como compilar os arquivos .tex #
 
 Você é capaz de compilar os arquivos .tex e gerar um .pdf usando (Linux):
 
@@ -64,7 +75,7 @@ Você é capaz de compilar os arquivos .tex e gerar um .pdf usando (Linux):
     $ pdflatex <nome>.tex
 ```
 
-Caso você não possua um Latex instalado em sua máquina, [clique aqui](http://ubuntued.info/como-instalar-o-latex-no-ubuntu)
+Caso você não possua um Latex instalado em sua máquina, [clique aqui](http://ubuntued.info/como-instalar-o-latex-no-ubuntu).
 
 ## Contribua #
 
