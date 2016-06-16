@@ -7,7 +7,7 @@ O objetivo aqui é compartilhar conhecimento e informação para as outras pesso
 # Documentos #
 Essa é a organização dos documentos:
 ```
-bootstrap/
+BTI-Documents/
 ├── [EDB] - Estruturas de Dados Básicas
 │   ├── hash_table.pdf - Explicações sobre a TAD de Tabela de Dispersão
 │   ├── hash_table.tex - Arquivo fonte do documento hash_table.pdf
