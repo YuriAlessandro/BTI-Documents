@@ -6,19 +6,18 @@ O objetivo aqui é compartilhar conhecimento e informação para as outras pesso
 
 # Documentos #
 Essa é a organização dos documentos:
-
 ```
-├── BTI-Documents/
-│   ├── [EDB] - Estruturas de Dados Básicas
-│   │   ├── hash_table.pdf - Explicações sobre a TAD de Tabela de Dispersão
-│   │   ├── hash_table.tex - Arquivo fonte do documento hash_table.pdf
-│   ├── [FMC2] - Fundamentos Matemáticos da Computação 2
-│   │   ├── fmc2_un2.pdf - Teoria Axiomática dos Conjuntos e Lambda-Calculus
-│   │   ├── fmc2_un2.tex - Arquivo fonte do documento fmc2_un2.tex
-│   ├── [IOAC] - Introdução a Arquitetura e Organização de Computadores
-│   │   ├── ioac_un3.pdf - Dispostivos de E/S, Barramento, Multithreading e Sistema Operacional
-│   ├── Probabilidade
-│   │   ├── prob.pdf - Modelos Probabilisticos Discretos e Contínuos
+bootstrap/
+├── [EDB] - Estruturas de Dados Básicas
+│   ├── hash_table.pdf - Explicações sobre a TAD de Tabela de Dispersão
+│   ├── hash_table.tex - Arquivo fonte do documento hash_table.pdf
+├── [FMC2] - Fundamentos Matemáticos da Computação 2
+│   ├── fmc2_un2.pdf - Teoria Axiomática dos Conjuntos e Lambda-Calculus
+│   └── fmc2_un2.tex - Arquivo fonte do documento fmc2_un2.tex
+├── [IOAC] - Introdução a Arquitetura e Organização de Computadores
+│   └── ioac_un3.pdf - Dispostivos de E/S, Barramento, Multithreading e Sistema Operacional
+└── Probabilidade
+    └── prob.pdf - Modelos Probabilisticos Discretos e Contínuos
 ```
 
 # LaTeX #
